@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="ExplorerData" format=3]
+
+[ext_resource type="Script" path="res://data/types/explorer_data.gd" id="1_ed"]
+[ext_resource type="Script" path="res://data/types/image_ref.gd" id="2_ir"]
+[ext_resource type="Texture2D" path="res://data/explorers/near_shoemaker/img/near_shoemaker.svg" id="3_sp"]
+[ext_resource type="Texture2D" path="res://assets/backdrops/eros.svg" id="4_bd"]
+
+[sub_resource type="Resource" id="Resource_craft"]
+script = ExtResource("2_ir")
+key = &"craft"
+texture = ExtResource("3_sp")
+caption = "A NEAR Shoemaker e seus quatro painéis solares."
+credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+source_url = "https://science.nasa.gov/mission/near-shoemaker/"
+
+[sub_resource type="Resource" id="Resource_place"]
+script = ExtResource("2_ir")
+key = &"place"
+texture = ExtResource("4_bd")
+caption = "O asteroide 433 Eros, onde a NEAR pousou."
+credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+source_url = "https://science.nasa.gov/mission/near-shoemaker/"
+
+[resource]
+script = ExtResource("1_ed")
+id = &"near_shoemaker"
+display_name = "NEAR Shoemaker"
+subtitle = "Sonda de asteroide · 1996"
+region = "asteroid"
+window_backdrop = ExtResource("4_bd")
+sprite = ExtResource("3_sp")
+view_position = Vector2(800, 400)
+view_scale = 0.85
+idle_motion = true
+face_position = Vector2(0.5, 0.5)
+face_size = 0.24
+radar_position = Vector2(-24, 138)
+unlock_after = Array[StringName]([])
+images = Array[ExtResource("2_ir")]([SubResource("Resource_craft"), SubResource("Resource_place")])

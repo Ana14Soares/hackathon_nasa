@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/interactable/interactable.gd" id="1_inter"]
+
+[node name="Interactable" type="Button"]
+offset_right = 220.0
+offset_bottom = 120.0
+mouse_default_cursor_shape = 2
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("1_inter")

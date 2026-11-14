@@ -1,0 +1,70 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/intro/intro_story.gd" id="1_intro"]
+[ext_resource type="Script" path="res://ui/common/starfield.gd" id="2_stars"]
+[ext_resource type="Texture2D" path="res://assets/art/lyra_saucer.svg" id="3_saucer"]
+[ext_resource type="PackedScene" path="res://ui/dialogue_box/dialogue_box.tscn" id="4_dlg"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu/pause_menu.tscn" id="5_pause"]
+
+[node name="IntroStory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_intro")
+
+[node name="Starfield" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_stars")
+seed_value = 21
+
+[node name="FirstExplorer" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.74
+anchor_top = 0.16
+anchor_right = 0.74
+anchor_bottom = 0.16
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Saucer" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.42
+anchor_top = 0.36
+anchor_right = 0.42
+anchor_bottom = 0.36
+offset_left = -260.0
+offset_top = -170.0
+offset_right = 260.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_saucer")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UiLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="DialogueBox" parent="UiLayer" instance=ExtResource("4_dlg")]
+unique_name_in_owner = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("5_pause")]

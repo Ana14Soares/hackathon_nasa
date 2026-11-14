@@ -1,0 +1,44 @@
+{
+  "arrival": [
+    {"who": "hero", "emo": "curious", "text": "Que planeta vermelho! Isso é... Marte?"},
+    {"who": "hero", "emo": "curious", "text": "Tem um carrinho de seis rodas parado ali na areia. Parece cansado."},
+    {"who": "hero", "emo": "curious", "text": "Vou escaneá-lo com cuidado."}
+  ],
+  "scan": [
+    {"who": "explorer", "emo": "", "text": "Oi! Eu sou o [b]Spirit[/b], um robô explorador de Marte.", "image": "craft"},
+    {"who": "explorer", "emo": "", "text": "Cheguei aqui em 4 de janeiro de 2004, dentro da [b]cratera Gusev[/b]. Tenho um irmão gêmeo, o Opportunity, que pousou do outro lado do planeta.", "image": "place"},
+    {"who": "explorer", "emo": "", "text": "Minha missão era durar 90 [b]sóis[/b], que são os dias de Marte. Mas eu continuei trabalhando por mais de seis anos!"},
+    {"who": "explorer", "emo": "", "text": "Andei 7,73 quilômetros procurando pistas de que Marte já teve água, e encontrei algumas."},
+    {"who": "explorer", "emo": "", "text": "Em 2009, minhas rodas atolaram em uma areia bem fofa. Tentaram de tudo para me soltar."},
+    {"who": "explorer", "emo": "", "text": "Mandei minha última mensagem em março de 2010. Depois disso, fiquei aqui, olhando o céu de Marte."}
+  ],
+  "diary": {
+    "technical": {
+      "report": [
+        {"label": "TYPE", "value": "Robô explorador", "source": "nasa_spirit"},
+        {"label": "LAUNCH", "value": "10 de junho de 2003", "source": "nasa_spirit"},
+        {"label": "TARGET", "value": "Marte", "source": "nasa_spirit"},
+        {"label": "OBJECTIVE", "value": "Buscar sinais de água", "source": "nasa_spirit"}
+      ],
+      "summary": "O Spirit foi um dos dois robôs gêmeos da missão Mars Exploration Rover. Planejado para 90 dias marcianos, ele explorou Marte por mais de seis anos e encontrou sinais de que o planeta já teve água.",
+      "facts": [
+        {"label": "Lançamento", "value": "10 de junho de 2003", "source": "nasa_spirit"},
+        {"label": "Pouso", "value": "4 de janeiro de 2004, cratera Gusev (Marte)", "source": "nasa_spirit"},
+        {"label": "Duração planejada", "value": "90 sóis (dias marcianos)", "source": "nasa_spirit"},
+        {"label": "Distância percorrida", "value": "7,73 km", "source": "nasa_spirit"},
+        {"label": "Último contato", "value": "22 de março de 2010", "source": "nasa_spirit"},
+        {"label": "Fim oficial da missão", "value": "25 de maio de 2011", "source": "nasa_spirit"}
+      ],
+      "images": ["craft", "place"]
+    },
+    "personal": "O Spirit era para ter trabalhado só noventa dias, mas não quis parar. Rodou, subiu morros, procurou água... até atolar. Mesmo preso, continuou mandando notícias por um tempo. Gosto de pensar que ele está só descansando depois de uma aventura muito, muito longa."
+  },
+  "wrap_up": [
+    {"who": "hero", "emo": "warm", "text": "Você trabalhou tanto, Spirit. Agora pode descansar: sua história está segura comigo."},
+    {"who": "hero", "emo": "curious", "text": "Hora de consultar o radar de novo."}
+  ],
+  "reward_lines": [],
+  "sources": {
+    "nasa_spirit": {"title": "NASA Science — Spirit (MER-A)", "url": "https://science.nasa.gov/mission/mer-spirit/", "checked_on": "", "checked_by": ""}
+  }
+}

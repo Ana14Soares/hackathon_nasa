@@ -1,0 +1,44 @@
+{
+  "arrival": [
+    {"who": "hero", "emo": "curious", "text": "Mais um visitante na Lua! Esse é dourado e brilha com a luz do Sol."},
+    {"who": "hero", "emo": "wonder", "text": "Tem pegadas em volta dele... pegadas de verdade!"},
+    {"who": "hero", "emo": "curious", "text": "Preciso saber essa história. Scanner!"}
+  ],
+  "scan": [
+    {"who": "explorer", "emo": "", "text": "Olá, viajante. Eu sou a [b]Eagle[/b], o módulo lunar da missão Apollo 11.", "image": "craft"},
+    {"who": "explorer", "emo": "", "text": "Em 20 de julho de 1969, levei Neil Armstrong e Buzz Aldrin até a superfície da Lua."},
+    {"who": "explorer", "emo": "", "text": "Pousamos no [b]Mar da Tranquilidade[/b]. Foi a primeira vez que seres humanos pisaram em outro mundo.", "image": "place"},
+    {"who": "explorer", "emo": "", "text": "Enquanto isso, Michael Collins esperava em órbita, no módulo de comando Columbia."},
+    {"who": "explorer", "emo": "", "text": "Quando eles foram embora, a minha parte de cima decolou com os dois. A parte de baixo ficou aqui, onde estou até hoje."},
+    {"who": "explorer", "emo": "", "text": "Tenho uma placa presa na perna. Ela diz que os humanos vieram em paz, em nome de toda a humanidade."}
+  ],
+  "diary": {
+    "technical": {
+      "report": [
+        {"label": "TYPE", "value": "Módulo lunar tripulado", "source": "nasa_apollo11"},
+        {"label": "LAUNCH", "value": "16 de julho de 1969", "source": "nasa_apollo11"},
+        {"label": "TARGET", "value": "Lua", "source": "nasa_apollo11"},
+        {"label": "OBJECTIVE", "value": "Pouso tripulado na Lua", "source": "nasa_apollo11"}
+      ],
+      "summary": "A Eagle foi o módulo lunar da Apollo 11, a primeira missão a levar pessoas até a superfície da Lua. O estágio de descida, com uma placa comemorativa, continua no local do pouso.",
+      "facts": [
+        {"label": "Missão", "value": "Apollo 11", "source": "nasa_apollo11"},
+        {"label": "Lançamento", "value": "16 de julho de 1969", "source": "nasa_apollo11"},
+        {"label": "Pouso na Lua", "value": "20 de julho de 1969", "source": "nasa_apollo11"},
+        {"label": "Local", "value": "Mar da Tranquilidade (Base Tranquilidade)", "source": "nasa_apollo11"},
+        {"label": "Quem desceu", "value": "Neil Armstrong e Buzz Aldrin; Michael Collins ficou em órbita", "source": "nasa_apollo11"},
+        {"label": "O que ficou na Lua", "value": "O estágio de descida, com uma placa comemorativa", "source": "nasa_apollo11"}
+      ],
+      "images": ["craft", "place"]
+    },
+    "personal": "A Eagle é tímida, mas carrega o momento mais famoso de todos: os primeiros passos humanos fora da Terra. Fiquei olhando as pegadas em volta dela por um tempão. Elas ainda estão lá, porque na Lua não tem vento para apagar. É como se aquele dia nunca tivesse acabado."
+  },
+  "wrap_up": [
+    {"who": "hero", "emo": "warm", "text": "Obrigada, Eagle. Seu dia mais importante agora também está guardado no meu diário."},
+    {"who": "hero", "emo": "curious", "text": "Vamos ver o que o radar encontra agora."}
+  ],
+  "reward_lines": [],
+  "sources": {
+    "nasa_apollo11": {"title": "NASA — Apollo 11", "url": "https://www.nasa.gov/mission/apollo-11/", "checked_on": "", "checked_by": ""}
+  }
+}

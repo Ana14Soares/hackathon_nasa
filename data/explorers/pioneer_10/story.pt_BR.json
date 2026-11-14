@@ -1,0 +1,48 @@
+{
+  "arrival": [
+    {"who": "hero", "emo": "curious", "text": "Uau... um objeto sozinho aqui, tão longe de tudo. Que legal!"},
+    {"who": "hero", "emo": "curious", "text": "Parece feito à mão. Será que alguém mandou ele até aqui de propósito?"},
+    {"who": "hero", "emo": "curious", "text": "Preciso descobrir. Vou usar o [b]scanner[/b]!"}
+  ],
+  "scan": [
+    {"who": "explorer", "emo": "", "text": "Olá... Faz tanto tempo que ninguém fala comigo. Eu sou o [b]Pioneer 10[/b].", "image": "craft"},
+    {"who": "explorer", "emo": "", "text": "Fui lançado da Terra em 2 de março de 1972. Minha missão era ir mais longe do que qualquer nave já tinha ido."},
+    {"who": "explorer", "emo": "", "text": "Fui o primeiro a atravessar o [b]cinturão de asteroides[/b]. Muita gente achava que eu não ia conseguir!"},
+    {"who": "explorer", "emo": "", "text": "Em dezembro de 1973 passei perto de [b]Júpiter[/b] e mandei para a Terra as primeiras imagens de perto daquele gigante.", "image": "place"},
+    {"who": "explorer", "emo": "", "text": "Minha última mensagem chegou à Terra em janeiro de 2003. Desde então, sigo viajando em silêncio."},
+    {"who": "explorer", "emo": "", "text": "Carrego uma placa com um recado dos humanos. Quem sabe um dia alguém a encontre... alguém como você."}
+  ],
+  "diary": {
+    "technical": {
+      "report": [
+        {"label": "TYPE", "value": "Sonda de sobrevoo", "source": "nasa_pioneer10"},
+        {"label": "LAUNCH", "value": "2 de março de 1972", "source": "nasa_pioneer10"},
+        {"label": "TARGET", "value": "Júpiter", "source": "nasa_pioneer10"},
+        {"label": "OBJECTIVE", "value": "Sobrevoar Júpiter", "source": "nasa_pioneer10"}
+      ],
+      "summary": "O Pioneer 10 foi a primeira sonda a atravessar o cinturão de asteroides e a visitar Júpiter. Depois disso, seguiu rumo ao espaço interestelar levando a Placa Pioneer, uma mensagem gravada para quem a encontrar.",
+      "facts": [
+        {"label": "Lançamento", "value": "2 de março de 1972, Cabo Canaveral (EUA)", "source": "nasa_pioneer10"},
+        {"label": "Primeiro a cruzar", "value": "O cinturão de asteroides (1972–1973)", "source": "nasa_pioneer10"},
+        {"label": "Passagem por Júpiter", "value": "3 de dezembro de 1973", "source": "nasa_pioneer10"},
+        {"label": "Energia", "value": "Geradores nucleares (RTG), porque longe do Sol a luz é fraca demais para painéis solares", "source": "nasa_pioneer10"},
+        {"label": "Último sinal recebido", "value": "23 de janeiro de 2003", "source": "nasa_pioneer10"},
+        {"label": "Para onde vai", "value": "Na direção da estrela Aldebaran, na constelação de Touro", "source": "nasa_pioneer10"}
+      ],
+      "images": ["craft", "place"]
+    },
+    "personal": "Encontrei o Pioneer sozinho, tão longe de casa... Ele é pequeno, mas teve uma coragem enorme: foi o primeiro a passar pelo cinturão de asteroides! Fiquei pensando em quanto tempo ele viajou sem ninguém para conversar. Hoje ele não está mais sozinho. Agora ele tem uma amiga."
+  },
+  "wrap_up": [
+    {"who": "hero", "emo": "warm", "text": "Obrigada por me contar a sua história, Pioneer. Vou guardá-la com carinho."},
+    {"who": "hero", "emo": "curious", "text": "Espera... ele está me mostrando alguma coisa."}
+  ],
+  "reward_lines": [
+    {"who": "hero", "emo": "awe", "text": "A [b]Placa Pioneer[/b]! Ela tem um mapa desenhado: mostra onde fica o Sol e o caminho que o Pioneer fez para sair do sistema solar."},
+    {"who": "hero", "emo": "awe", "text": "Meu radar aprendeu a ler esse mapa. Agora consigo encontrar outros exploradores!"},
+    {"who": "hero", "emo": "curious", "text": "O [b]radar solar[/b] está piscando no painel. Vamos ver para onde ele aponta?"}
+  ],
+  "sources": {
+    "nasa_pioneer10": {"title": "NASA Science — Pioneer 10", "url": "https://science.nasa.gov/mission/pioneer-10/", "checked_on": "", "checked_by": ""}
+  }
+}

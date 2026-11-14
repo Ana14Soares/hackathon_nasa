@@ -1,0 +1,44 @@
+{
+  "arrival": [
+    {"who": "hero", "emo": "curious", "text": "Marte de novo! Mas esse lugar é bem plano e silencioso."},
+    {"who": "hero", "emo": "curious", "text": "Tem uma nave com duas asas redondas, toda coberta de poeira."},
+    {"who": "hero", "emo": "curious", "text": "Será que ela ainda está ouvindo alguma coisa? Scanner!"}
+  ],
+  "scan": [
+    {"who": "explorer", "emo": "", "text": "Olá. Eu sou a [b]InSight[/b]. Meu trabalho era ouvir o coração de Marte.", "image": "craft"},
+    {"who": "explorer", "emo": "", "text": "Pousei em 26 de novembro de 2018, numa planície chamada [b]Elysium Planitia[/b].", "image": "place"},
+    {"who": "explorer", "emo": "", "text": "Eu tinha um [b]sismômetro[/b]: um instrumento que sente os tremores do chão, os \"martemotos\"."},
+    {"who": "explorer", "emo": "", "text": "Senti mais de 1.300 tremores! Com eles, os cientistas descobriram como Marte é por dentro."},
+    {"who": "explorer", "emo": "", "text": "Com o tempo, a poeira cobriu meus painéis solares e minha energia foi acabando."},
+    {"who": "explorer", "emo": "", "text": "Em dezembro de 2022 a missão terminou. Mas o que eu ouvi ainda ajuda a entender este planeta."}
+  ],
+  "diary": {
+    "technical": {
+      "report": [
+        {"label": "TYPE", "value": "Sonda de pouso", "source": "nasa_insight"},
+        {"label": "LAUNCH", "value": "5 de maio de 2018", "source": "nasa_insight"},
+        {"label": "TARGET", "value": "Marte", "source": "nasa_insight"},
+        {"label": "OBJECTIVE", "value": "Estudar o interior de Marte", "source": "nasa_insight"}
+      ],
+      "summary": "A InSight foi a primeira missão dedicada a estudar o interior profundo de Marte. Com seu sismômetro, registrou mais de 1.300 tremores e ajudou a medir a crosta, o manto e o núcleo do planeta.",
+      "facts": [
+        {"label": "Lançamento", "value": "5 de maio de 2018", "source": "nasa_insight"},
+        {"label": "Pouso", "value": "26 de novembro de 2018, Elysium Planitia (Marte)", "source": "nasa_insight"},
+        {"label": "Instrumento principal", "value": "Sismômetro (SEIS)", "source": "nasa_insight"},
+        {"label": "Tremores detectados", "value": "Mais de 1.300", "source": "nasa_insight"},
+        {"label": "Fim da missão", "value": "21 de dezembro de 2022", "source": "nasa_insight"},
+        {"label": "Por que parou", "value": "Poeira acumulada nos painéis solares", "source": "nasa_insight"}
+      ],
+      "images": ["craft", "place"]
+    },
+    "personal": "A InSight não andava nem voava: ela ficava quietinha, escutando. Imagina passar anos prestando atenção nos tremores de um planeta inteiro! Quando a poeira cobriu as asas dela, ela foi ficando sem força, devagarinho. Mas tudo o que ela escutou continua ensinando os humanos."
+  },
+  "wrap_up": [
+    {"who": "hero", "emo": "warm", "text": "Obrigada por escutar Marte por tanto tempo, InSight. Agora sou eu que vou te escutar."},
+    {"who": "hero", "emo": "curious", "text": "O radar está esperando."}
+  ],
+  "reward_lines": [],
+  "sources": {
+    "nasa_insight": {"title": "NASA Science — InSight", "url": "https://science.nasa.gov/mission/insight/", "checked_on": "", "checked_by": ""}
+  }
+}

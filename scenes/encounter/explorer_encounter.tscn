@@ -1,0 +1,48 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/encounter/explorer_encounter.gd" id="1_enc"]
+[ext_resource type="PackedScene" path="res://scenes/ship/ship_interior.tscn" id="2_ship"]
+[ext_resource type="PackedScene" path="res://ui/overlays/scan_overlay.tscn" id="3_scan"]
+[ext_resource type="PackedScene" path="res://ui/dialogue_box/dialogue_box.tscn" id="4_dlg"]
+[ext_resource type="PackedScene" path="res://ui/overlays/reward_popup.tscn" id="5_reward"]
+[ext_resource type="PackedScene" path="res://ui/overlays/diary_book.tscn" id="6_diary"]
+[ext_resource type="PackedScene" path="res://ui/overlays/id_card_overlay.tscn" id="7_card"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu/pause_menu.tscn" id="8_pause"]
+
+[node name="ExplorerEncounter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_enc")
+
+[node name="ShipInterior" parent="." instance=ExtResource("2_ship")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="FxLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="ScanOverlay" parent="FxLayer" instance=ExtResource("3_scan")]
+unique_name_in_owner = true
+
+[node name="UiLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="DialogueBox" parent="UiLayer" instance=ExtResource("4_dlg")]
+unique_name_in_owner = true
+
+[node name="RewardPopup" parent="UiLayer" instance=ExtResource("5_reward")]
+unique_name_in_owner = true
+close_on_click_outside = false
+
+[node name="DiaryBook" parent="UiLayer" instance=ExtResource("6_diary")]
+unique_name_in_owner = true
+
+[node name="IdCardOverlay" parent="UiLayer" instance=ExtResource("7_card")]
+unique_name_in_owner = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_pause")]

@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/radar/radar_marker.gd" id="1_marker"]
+
+[node name="RadarMarker" type="Button"]
+offset_right = 72.0
+offset_bottom = 72.0
+text = "?"
+script = ExtResource("1_marker")

@@ -1,0 +1,175 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/radar/radar_map.gd" id="1_map"]
+[ext_resource type="Script" path="res://ui/common/starfield.gd" id="2_stars"]
+[ext_resource type="Script" path="res://scenes/radar/radar_display.gd" id="3_display"]
+[ext_resource type="Texture2D" path="res://assets/art/lyra_saucer.svg" id="4_saucer"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_diary.svg" id="5_diary"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_id.svg" id="6_id"]
+[ext_resource type="PackedScene" path="res://ui/overlays/diary_book.tscn" id="7_book"]
+[ext_resource type="PackedScene" path="res://ui/overlays/id_card_overlay.tscn" id="8_card"]
+[ext_resource type="PackedScene" path="res://ui/overlays/confirm_overlay.tscn" id="9_confirm"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu/pause_menu.tscn" id="10_pause"]
+
+[node name="RadarMap" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_map")
+
+[node name="Starfield" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_stars")
+
+[node name="RadarDisplay" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -460.0
+offset_right = 460.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_display")
+
+[node name="YouAreHere" type="VBoxContainer" parent="RadarDisplay"]
+unique_name_in_owner = true
+layout_mode = 0
+mouse_filter = 2
+alignment = 1
+
+[node name="Ship" type="TextureRect" parent="RadarDisplay/YouAreHere"]
+custom_minimum_size = Vector2(64, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = ExtResource("4_saucer")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="RadarDisplay/YouAreHere"]
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+text = "Você está aqui"
+horizontal_alignment = 1
+
+[node name="Markers" type="Control" parent="RadarDisplay"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="IdCardButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 300.0
+offset_bottom = 96.0
+mouse_default_cursor_shape = 2
+theme_type_variation = &"GhostButton"
+text = "Cartão da Lyra"
+icon = ExtResource("6_id")
+
+[node name="DiaryButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = -100.0
+offset_right = 224.0
+offset_bottom = 100.0
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+text = "Diário
+de bordo"
+icon = ExtResource("5_diary")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="InfoPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -140.0
+offset_right = -24.0
+offset_bottom = -140.0
+grow_horizontal = 0
+grow_vertical = 1
+theme_type_variation = &"InfoPanel"
+
+[node name="VBox" type="VBoxContainer" parent="InfoPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="InfoTitle" type="Label" parent="InfoPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeadingLabel"
+autowrap_mode = 3
+
+[node name="InfoText" type="Label" parent="InfoPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="ScaleNote" type="Label" parent="InfoPanel/VBox"]
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+text = "Distâncias e tamanhos fora de escala."
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -96.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+text = "Voltar à nave"
+
+[node name="UiLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="DiaryBook" parent="UiLayer" instance=ExtResource("7_book")]
+unique_name_in_owner = true
+
+[node name="IdCardOverlay" parent="UiLayer" instance=ExtResource("8_card")]
+unique_name_in_owner = true
+
+[node name="ConfirmOverlay" parent="UiLayer" instance=ExtResource("9_confirm")]
+unique_name_in_owner = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("10_pause")]

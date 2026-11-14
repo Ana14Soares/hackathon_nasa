@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ProtagonistCard" format=3]
+
+[ext_resource type="Script" path="res://data/types/protagonist_card.gd" id="1_pc"]
+[ext_resource type="Texture2D" path="res://assets/art/lyra_portrait.svg" id="2_pt"]
+
+[resource]
+script = ExtResource("1_pc")
+display_name = "Lyra"
+origin = "Constelação de Lira, perto da estrela Vega"
+ship_name = "Vagalume"
+portrait = ExtResource("2_pt")
+note = "Viajante curiosa. Coleciona histórias de exploradores esquecidos e não deixa nenhum para trás."

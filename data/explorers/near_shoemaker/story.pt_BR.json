@@ -1,0 +1,44 @@
+{
+  "arrival": [
+    {"who": "hero", "emo": "curious", "text": "Que pedra gigante e esquisita! Parece um amendoim flutuando no espaço."},
+    {"who": "hero", "emo": "wonder", "text": "E tem uma nave pousada nela! Como foi parar aí?"},
+    {"who": "hero", "emo": "curious", "text": "Scanner, me ajuda a descobrir."}
+  ],
+  "scan": [
+    {"who": "explorer", "emo": "", "text": "Olá! Eu sou a [b]NEAR Shoemaker[/b]. Meu nome homenageia o cientista Eugene Shoemaker, que estudava crateras e asteroides.", "image": "craft"},
+    {"who": "explorer", "emo": "", "text": "Fui lançada em 17 de fevereiro de 1996 para estudar um asteroide chamado [b]Eros[/b]."},
+    {"who": "explorer", "emo": "", "text": "Em 14 de fevereiro de 2000 comecei a girar em volta dele. Fui a primeira nave a orbitar um asteroide!"},
+    {"who": "explorer", "emo": "", "text": "Passei um ano inteiro fotografando Eros, de todos os lados.", "image": "place"},
+    {"who": "explorer", "emo": "", "text": "No fim, os cientistas me fizeram pousar nele, em 12 de fevereiro de 2001. E eu nem tinha sido feita para pousar!"},
+    {"who": "explorer", "emo": "", "text": "Ainda mandei sinais da superfície por alguns dias. Agora descanso aqui, presa ao meu asteroide."}
+  ],
+  "diary": {
+    "technical": {
+      "report": [
+        {"label": "TYPE", "value": "Sonda orbital", "source": "nasa_near"},
+        {"label": "LAUNCH", "value": "17 de fevereiro de 1996", "source": "nasa_near"},
+        {"label": "TARGET", "value": "Asteroide 433 Eros", "source": "nasa_near"},
+        {"label": "OBJECTIVE", "value": "Orbitar um asteroide", "source": "nasa_near"}
+      ],
+      "summary": "A NEAR Shoemaker foi a primeira nave a orbitar um asteroide e a primeira a pousar em um. Ela estudou o asteroide 433 Eros por cerca de um ano antes de pousar nele.",
+      "facts": [
+        {"label": "Lançamento", "value": "17 de fevereiro de 1996", "source": "nasa_near"},
+        {"label": "Destino", "value": "Asteroide 433 Eros", "source": "nasa_near"},
+        {"label": "Entrada em órbita", "value": "14 de fevereiro de 2000 — primeira órbita em volta de um asteroide", "source": "nasa_near"},
+        {"label": "Pouso", "value": "12 de fevereiro de 2001 — primeiro pouso em um asteroide", "source": "nasa_near"},
+        {"label": "Último contato", "value": "28 de fevereiro de 2001", "source": "nasa_near"},
+        {"label": "Nome", "value": "Homenagem ao geólogo Eugene Shoemaker", "source": "nasa_near"}
+      ],
+      "images": ["craft", "place"]
+    },
+    "personal": "A NEAR foi corajosa de um jeito diferente: ninguém tinha planejado que ela pousasse, mas ela tentou mesmo assim, e deu certo! Ficou um ano inteiro olhando para o mesmo asteroide. Acho que ela conhece o Eros melhor do que ninguém."
+  },
+  "wrap_up": [
+    {"who": "hero", "emo": "warm", "text": "Que pouso corajoso, NEAR! Vou guardar cada foto sua no meu diário."},
+    {"who": "hero", "emo": "curious", "text": "O radar está chamando de novo."}
+  ],
+  "reward_lines": [],
+  "sources": {
+    "nasa_near": {"title": "NASA Science — NEAR Shoemaker", "url": "https://science.nasa.gov/mission/near-shoemaker/", "checked_on": "", "checked_by": ""}
+  }
+}

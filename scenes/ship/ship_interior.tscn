@@ -1,0 +1,161 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/ship/ship_interior.gd" id="1_ship"]
+[ext_resource type="Script" path="res://ui/common/starfield.gd" id="2_stars"]
+[ext_resource type="Script" path="res://scenes/ship/cockpit_drawing.gd" id="3_cockpit"]
+[ext_resource type="PackedScene" path="res://ui/interactable/interactable.tscn" id="4_inter"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_id.svg" id="5_id"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_diary.svg" id="6_diary"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_radar.svg" id="7_radar"]
+[ext_resource type="Texture2D" path="res://assets/ui/icon_scan.svg" id="8_scan"]
+[ext_resource type="Script" path="res://ui/cute_face/cute_face.gd" id="9_face"]
+
+[node name="ShipInterior" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ship")
+
+[node name="Window" type="Control" parent="."]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Starfield" type="Control" parent="Window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_stars")
+
+[node name="Backdrop" type="TextureRect" parent="Window"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ExplorerSprite" type="TextureRect" parent="Window"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 400.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ExplorerFace" type="Control" parent="Window/ExplorerSprite"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("9_face")
+
+[node name="Cockpit" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_cockpit")
+
+[node name="ArtifactShelf" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.15
+anchor_top = 0.74
+anchor_right = 0.28
+anchor_bottom = 0.74
+offset_bottom = 84.0
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="IdCard" parent="." instance=ExtResource("4_inter")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 300.0
+offset_bottom = 96.0
+theme_type_variation = &"GhostButton"
+text = "Cartão da Lyra"
+icon = ExtResource("5_id")
+icon_alignment = 0
+vertical_icon_alignment = 1
+item_id = &"id_card"
+
+[node name="DiaryObject" parent="." instance=ExtResource("4_inter")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -390.0
+offset_top = -240.0
+offset_right = -170.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Diário
+de bordo"
+icon = ExtResource("6_diary")
+item_id = &"diary"
+
+[node name="RadarScreen" parent="." instance=ExtResource("4_inter")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -240.0
+offset_right = 140.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"RadarMarker"
+text = "Radar solar"
+icon = ExtResource("7_radar")
+item_id = &"radar"
+
+[node name="ScanButton" parent="." instance=ExtResource("4_inter")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.8
+anchor_top = 1.0
+anchor_right = 0.8
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -220.0
+offset_right = 120.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"ScanButton"
+text = "SCAN"
+icon = ExtResource("8_scan")
+item_id = &"scan"

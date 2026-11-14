@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="ExplorerData" format=3]
+
+[ext_resource type="Script" path="res://data/types/explorer_data.gd" id="1_ed"]
+[ext_resource type="Script" path="res://data/types/image_ref.gd" id="2_ir"]
+[ext_resource type="Texture2D" path="res://data/explorers/eagle/img/eagle.svg" id="3_sp"]
+[ext_resource type="Texture2D" path="res://assets/backdrops/moon.svg" id="4_bd"]
+
+[sub_resource type="Resource" id="Resource_craft"]
+script = ExtResource("2_ir")
+key = &"craft"
+texture = ExtResource("3_sp")
+caption = "O estágio de descida da Eagle, que ficou na Lua."
+credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+source_url = "https://www.nasa.gov/mission/apollo-11/"
+
+[sub_resource type="Resource" id="Resource_place"]
+script = ExtResource("2_ir")
+key = &"place"
+texture = ExtResource("4_bd")
+caption = "O Mar da Tranquilidade, local do primeiro pouso tripulado."
+credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+source_url = "https://www.nasa.gov/mission/apollo-11/"
+
+[resource]
+script = ExtResource("1_ed")
+id = &"eagle"
+display_name = "Eagle"
+subtitle = "Módulo lunar da Apollo 11 · 1969"
+region = "moon"
+window_backdrop = ExtResource("4_bd")
+sprite = ExtResource("3_sp")
+view_position = Vector2(800, 400)
+view_scale = 0.9
+idle_motion = true
+face_position = Vector2(0.5, 0.5)
+face_size = 0.32
+radar_position = Vector2(138, -5)
+unlock_after = Array[StringName]([])
+images = Array[ExtResource("2_ir")]([SubResource("Resource_craft"), SubResource("Resource_place")])

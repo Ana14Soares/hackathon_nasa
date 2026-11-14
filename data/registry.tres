@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ExplorerRegistry" format=3]
+
+[ext_resource type="Script" path="res://data/types/explorer_registry.gd" id="1_reg"]
+[ext_resource type="Script" path="res://data/types/explorer_data.gd" id="2_ed"]
+[ext_resource type="Resource" path="res://data/explorers/pioneer_10/pioneer_10.tres" id="3_pioneer_10"]
+[ext_resource type="Resource" path="res://data/explorers/surveyor_3/surveyor_3.tres" id="4_surveyor_3"]
+[ext_resource type="Resource" path="res://data/explorers/eagle/eagle.tres" id="5_eagle"]
+[ext_resource type="Resource" path="res://data/explorers/spirit/spirit.tres" id="6_spirit"]
+[ext_resource type="Resource" path="res://data/explorers/near_shoemaker/near_shoemaker.tres" id="7_near_shoemaker"]
+[ext_resource type="Resource" path="res://data/explorers/dawn/dawn.tres" id="8_dawn"]
+[ext_resource type="Resource" path="res://data/explorers/insight/insight.tres" id="9_insight"]
+
+[resource]
+script = ExtResource("1_reg")
+explorers = Array[ExtResource("2_ed")]([ExtResource("3_pioneer_10"), ExtResource("4_surveyor_3"), ExtResource("5_eagle"), ExtResource("6_spirit"), ExtResource("7_near_shoemaker"), ExtResource("8_dawn"), ExtResource("9_insight")])
+first_explorer = &"pioneer_10"
+unlock_count = 2

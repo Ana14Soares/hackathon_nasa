@@ -1,0 +1,86 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/ending/ending.gd" id="1_end"]
+[ext_resource type="PackedScene" path="res://scenes/ship/ship_interior.tscn" id="2_ship"]
+[ext_resource type="PackedScene" path="res://ui/dialogue_box/dialogue_box.tscn" id="3_dlg"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu/pause_menu.tscn" id="4_pause"]
+
+[node name="Ending" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_end")
+
+[node name="ShipInterior" parent="." instance=ExtResource("2_ship")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="UiLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="DialogueBox" parent="UiLayer" instance=ExtResource("3_dlg")]
+unique_name_in_owner = true
+
+[node name="Credits" type="Control" parent="UiLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="UiLayer/Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Panel" type="PanelContainer" parent="UiLayer/Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.22
+anchor_top = 0.08
+anchor_right = 0.78
+anchor_bottom = 0.92
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"MenuBox"
+
+[node name="VBox" type="VBoxContainer" parent="UiLayer/Credits/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="UiLayer/Credits/Panel/VBox"]
+layout_mode = 2
+theme_type_variation = &"HeadingLabel"
+text = "Fim da história"
+
+[node name="Scroll" type="ScrollContainer" parent="UiLayer/Credits/Panel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="CreditsText" type="RichTextLabel" parent="UiLayer/Credits/Panel/VBox/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 3
+
+[node name="MenuButton" type="Button" parent="UiLayer/Credits/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Voltar ao menu inicial"
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_pause")]

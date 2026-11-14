@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520">
+
+<g stroke="#2b2840" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+ <polygon points="20,260 70,200 150,190 210,230 200,300 140,330 60,320" fill="#3d4f8a"/>
+ <polygon points="500,260 450,200 370,190 310,230 320,300 380,330 460,320" fill="#3d4f8a"/>
+ <line x1="70" y1="200" x2="140" y2="330" stroke="#7d92d6" stroke-width="2"/>
+ <line x1="150" y1="190" x2="60" y2="320" stroke="#7d92d6" stroke-width="2"/>
+ <line x1="450" y1="200" x2="380" y2="330" stroke="#7d92d6" stroke-width="2"/>
+ <line x1="370" y1="190" x2="460" y2="320" stroke="#7d92d6" stroke-width="2"/>
+ <polygon points="190,230 330,230 350,290 170,290" fill="#e8e6f0"/>
+ <line x1="200" y1="290" x2="180" y2="380" stroke-width="6"/>
+ <line x1="320" y1="290" x2="340" y2="380" stroke-width="6"/>
+ <line x1="260" y1="290" x2="260" y2="390" stroke-width="6"/>
+ <line x1="300" y1="240" x2="380" y2="150" stroke-width="5"/>
+ <line x1="380" y1="150" x2="430" y2="210" stroke-width="5"/>
+ <ellipse cx="400" cy="440" rx="60" ry="22" fill="#cfc9df"/>
+ <path d="M345 440 Q400 360 455 440 Z" fill="#e8e6f0"/>
+ <rect x="230" y="250" width="40" height="26" fill="#d8b45a"/>
+</g>
+</svg>

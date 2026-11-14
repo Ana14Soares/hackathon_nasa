@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300">
+
+<rect x="6" y="6" width="468" height="288" rx="18" fill="#d8b45a" stroke="#b8923c" stroke-width="8"/>
+<g stroke="#2b2840" stroke-width="3" fill="none" stroke-linecap="round">
+ <circle cx="70" cy="60" r="14"/><circle cx="110" cy="60" r="14"/><line x1="84" y1="60" x2="96" y2="60"/>
+ <g transform="translate(150 140)">
+  <line x1="0" y1="0" x2="120" y2="-40"/><line x1="0" y1="0" x2="-110" y2="-30"/>
+  <line x1="0" y1="0" x2="60" y2="80"/><line x1="0" y1="0" x2="-70" y2="70"/>
+  <line x1="0" y1="0" x2="130" y2="20"/><line x1="0" y1="0" x2="-40" y2="-90"/>
+  <line x1="0" y1="0" x2="20" y2="-95"/><line x1="0" y1="0" x2="-120" y2="20"/>
+ </g>
+ <circle cx="360" cy="140" r="16"/><line x1="360" y1="124" x2="360" y2="90"/>
+ <circle cx="360" cy="80" r="8"/><path d="M342 160 L330 210 M378 160 L390 210 M350 160 L350 220 M370 160 L370 220"/>
+ <circle cx="420" cy="150" r="14"/><path d="M420 164 L420 215 M406 178 L434 178"/>
+ <line x1="40" y1="260" x2="440" y2="260"/>
+ <circle cx="50" cy="260" r="10" fill="#2b2840"/><circle cx="90" cy="260" r="4"/><circle cx="120" cy="260" r="5"/>
+ <circle cx="150" cy="260" r="6"/><circle cx="180" cy="260" r="5"/><circle cx="230" cy="260" r="11"/>
+ <circle cx="280" cy="260" r="10"/><circle cx="320" cy="260" r="8"/><circle cx="355" cy="260" r="8"/>
+ <path d="M150 260 Q200 230 260 240 T440 210"/>
+</g>
+</svg>

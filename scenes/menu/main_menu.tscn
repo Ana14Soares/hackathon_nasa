@@ -1,0 +1,103 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/menu/main_menu.gd" id="1_menu"]
+[ext_resource type="Script" path="res://ui/common/starfield.gd" id="2_stars"]
+[ext_resource type="Script" path="res://scenes/ship/cockpit_drawing.gd" id="3_cockpit"]
+[ext_resource type="PackedScene" path="res://ui/overlays/confirm_overlay.tscn" id="4_confirm"]
+[ext_resource type="PackedScene" path="res://ui/overlays/settings_overlay.tscn" id="5_settings"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Starfield" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_stars")
+
+[node name="Cockpit" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_cockpit")
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuBox" type="PanelContainer" parent="Center"]
+layout_mode = 2
+theme_type_variation = &"MenuBox"
+
+[node name="VBox" type="VBoxContainer" parent="Center/MenuBox"]
+custom_minimum_size = Vector2(620, 0)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Kicker" type="Label" parent="Center/MenuBox/VBox"]
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+text = "JOGO NARRATIVO"
+
+[node name="Title" type="Label" parent="Center/MenuBox/VBox"]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "Exploradores esquecidos"
+autowrap_mode = 3
+
+[node name="Subtitle" type="Label" parent="Center/MenuBox/VBox"]
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+text = "Uma viajante curiosa. Objetos humanos à deriva. Histórias reais que merecem ser lembradas."
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="Center/MenuBox/VBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Center/MenuBox/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Começar"
+
+[node name="NewStoryButton" type="Button" parent="Center/MenuBox/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Nova história"
+
+[node name="SettingsButton" type="Button" parent="Center/MenuBox/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Acessibilidade e som"
+
+[node name="QuitButton" type="Button" parent="Center/MenuBox/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"GhostButton"
+text = "Sair"
+
+[node name="ConfirmOverlay" parent="." instance=ExtResource("4_confirm")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="SettingsOverlay" parent="." instance=ExtResource("5_settings")]
+unique_name_in_owner = true
+layout_mode = 1

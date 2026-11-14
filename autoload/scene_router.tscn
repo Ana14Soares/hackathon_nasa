@@ -1,0 +1,30 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://autoload/scene_router.gd" id="1_router"]
+[ext_resource type="Script" path="res://autoload/transition_fx.gd" id="2_fx"]
+
+[node name="SceneRouter" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("1_router")
+
+[node name="Blocker" type="ColorRect" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.02, 0.05, 0)
+
+[node name="Fx" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_fx")

@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="ExplorerData" format=3]
+
+[ext_resource type="Script" path="res://data/types/explorer_data.gd" id="1_ed"]
+[ext_resource type="Script" path="res://data/types/image_ref.gd" id="2_ir"]
+[ext_resource type="Texture2D" path="res://data/explorers/pioneer_10/img/pioneer_10.svg" id="3_sp"]
+[ext_resource type="Texture2D" path="res://assets/backdrops/deep_space.svg" id="4_bd"]
+[ext_resource type="Script" path="res://data/types/reward_data.gd" id="6_rw"]
+[ext_resource type="Texture2D" path="res://data/explorers/pioneer_10/img/plaque.svg" id="7_pl"]
+
+[sub_resource type="Resource" id="Resource_craft"]
+script = ExtResource("2_ir")
+key = &"craft"
+texture = ExtResource("3_sp")
+caption = "O Pioneer 10, com sua grande antena voltada para a Terra."
+credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+source_url = "https://science.nasa.gov/mission/pioneer-10/"
+
+[sub_resource type="Resource" id="Resource_place"]
+script = ExtResource("2_ir")
+key = &"place"
+texture = ExtResource("4_bd")
+caption = "Júpiter, o gigante que o Pioneer 10 visitou em 1973."
+credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+source_url = "https://science.nasa.gov/mission/pioneer-10/"
+
+[sub_resource type="Resource" id="Resource_reward"]
+script = ExtResource("6_rw")
+id = &"pioneer_plaque"
+display_name = "Placa Pioneer"
+description = "Lembrança de um novo amigo. Tem um mapa que mostra onde fica o Sol."
+texture = ExtResource("7_pl")
+shelf_slot = &"plaque"
+unlocks = Array[StringName]([&"radar_unlocked"])
+
+[resource]
+script = ExtResource("1_ed")
+id = &"pioneer_10"
+display_name = "Pioneer 10"
+subtitle = "Sonda interplanetária · 1972"
+region = "deep_space"
+window_backdrop = ExtResource("4_bd")
+sprite = ExtResource("3_sp")
+view_position = Vector2(800, 400)
+view_scale = 1.0
+idle_motion = true
+face_position = Vector2(0.5, 0.37)
+face_size = 0.34
+radar_position = Vector2(337, -283)
+unlock_after = Array[StringName]([])
+images = Array[ExtResource("2_ir")]([SubResource("Resource_craft"), SubResource("Resource_place")])
+reward = SubResource("Resource_reward")

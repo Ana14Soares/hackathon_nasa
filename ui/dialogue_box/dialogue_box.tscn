@@ -1,0 +1,95 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/dialogue_box/dialogue_box.gd" id="1_dlg"]
+[ext_resource type="Script" path="res://ui/cute_face/cute_face.gd" id="2_face"]
+
+[node name="DialogueBox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_dlg")
+
+[node name="Balloon" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 300.0
+offset_top = -40.0
+offset_right = -300.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+theme_type_variation = &"Balloon"
+
+[node name="HBox" type="HBoxContainer" parent="Balloon"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 24
+
+[node name="PortraitFrame" type="PanelContainer" parent="Balloon/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"PortraitFrame"
+
+[node name="Portrait" type="TextureRect" parent="Balloon/HBox/PortraitFrame"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PortraitFace" type="Control" parent="Balloon/HBox/PortraitFrame/Portrait"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+mouse_filter = 2
+script = ExtResource("2_face")
+
+[node name="Body" type="VBoxContainer" parent="Balloon/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="NameLabel" type="Label" parent="Balloon/HBox/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"NameLabel"
+text = "Lyra"
+
+[node name="TextScroll" type="ScrollContainer" parent="Balloon/HBox/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="Text" type="RichTextLabel" parent="Balloon/HBox/Body/TextScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 3
+
+[node name="Hint" type="Label" parent="Balloon/HBox/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+text = "Clique, Enter ou Espaço para continuar ▸"
+horizontal_alignment = 2
+autowrap_mode = 3

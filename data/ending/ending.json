@@ -1,0 +1,10 @@
+{
+  "backdrop": "res://assets/art/earth.svg",
+  "lines": [
+    {"who": "hero", "emo": "awe", "text": "Olha... é a [b]Terra[/b]. Foi daqui que todos eles partiram."},
+    {"who": "hero_to_player", "emo": "warm", "text": "Cada explorador que eu encontrei carregava um pedacinho da curiosidade de vocês."},
+    {"who": "hero_to_player", "emo": "warm", "text": "Eles viajaram sozinhos por muito tempo. Mas ninguém precisa ser esquecido."},
+    {"who": "hero_to_player", "emo": "warm", "text": "Agora você conhece as histórias deles. Você é guardião dessas memórias."},
+    {"who": "hero_to_player", "emo": "warm", "text": "Promete uma coisa? Não esqueça dos exploradores humanos. E nunca pare de ser curioso."}
+  ]
+}
