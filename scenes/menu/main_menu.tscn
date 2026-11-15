@@ -1,12 +1,24 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://da8ovalq87omk"]
 
-[ext_resource type="Script" path="res://scenes/menu/main_menu.gd" id="1_menu"]
-[ext_resource type="Script" path="res://ui/common/starfield.gd" id="2_stars"]
-[ext_resource type="Script" path="res://scenes/ship/cockpit_drawing.gd" id="3_cockpit"]
-[ext_resource type="PackedScene" path="res://ui/overlays/confirm_overlay.tscn" id="4_confirm"]
+[ext_resource type="Script" uid="uid://cyudgebsw7aq4" path="res://scenes/menu/main_menu.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://o6iyp4axaduy" path="res://scenes/menu/continue_default.svg" id="2_isoef"]
+[ext_resource type="Texture2D" uid="uid://uicheem0fvm6" path="res://scenes/menu/main_menu.svg" id="2_xn6kt"]
+[ext_resource type="Texture2D" uid="uid://b7ne3err5sw3y" path="res://scenes/menu/start_default.svg" id="3_isoef"]
+[ext_resource type="Texture2D" uid="uid://bgnqepk55ev26" path="res://scenes/menu/continue_pressed.svg" id="3_qgo02"]
 [ext_resource type="PackedScene" path="res://ui/overlays/settings_overlay.tscn" id="5_settings"]
+[ext_resource type="PackedScene" path="res://ui/overlays/credits_overlay.tscn" id="6_credits"]
+[ext_resource type="Texture2D" uid="uid://c35adfneac3dv" path="res://scenes/menu/start_pressed.svg" id="6_qgo02"]
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cfptk"]
+texture = ExtResource("3_isoef")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vovv2"]
+texture = ExtResource("6_qgo02")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1k4da"]
+texture = ExtResource("3_isoef")
+
+[node name="MainMenu" type="Control" unique_id=50518893]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,8 +26,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_menu")
+continue_normal = ExtResource("2_isoef")
+continue_hover = ExtResource("2_isoef")
+continue_pressed = ExtResource("3_qgo02")
 
-[node name="Starfield" type="Control" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=709728989]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,81 +39,83 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("2_stars")
+texture = ExtResource("2_xn6kt")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="Cockpit" type="Control" parent="."]
+[node name="Logo" type="TextureRect" parent="." unique_id=1579115367]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.12
+anchor_right = 0.75
+anchor_bottom = 0.62
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("3_cockpit")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Center" type="CenterContainer" parent="."]
+[node name="Buttons" type="VBoxContainer" parent="." unique_id=711573837]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.41666666
+anchor_top = 0.8518519
+anchor_right = 0.5833333
+anchor_bottom = 1.0972222
+offset_top = -154.0
+offset_bottom = -154.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+theme_override_constants/separation = 40
+alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="MenuBox" type="PanelContainer" parent="Center"]
+[node name="StartButton" type="Button" parent="Buttons" unique_id=997953324]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 120)
 layout_mode = 2
-theme_type_variation = &"MenuBox"
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"MenuStart"
+theme_override_styles/normal = SubResource("StyleBoxTexture_cfptk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vovv2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1k4da")
 
-[node name="VBox" type="VBoxContainer" parent="Center/MenuBox"]
-custom_minimum_size = Vector2(620, 0)
-layout_mode = 2
-theme_override_constants/separation = 14
-
-[node name="Kicker" type="Label" parent="Center/MenuBox/VBox"]
-layout_mode = 2
-theme_type_variation = &"SmallLabel"
-text = "JOGO NARRATIVO"
-
-[node name="Title" type="Label" parent="Center/MenuBox/VBox"]
-layout_mode = 2
-theme_type_variation = &"TitleLabel"
-text = "Exploradores esquecidos"
-autowrap_mode = 3
-
-[node name="Subtitle" type="Label" parent="Center/MenuBox/VBox"]
-layout_mode = 2
-theme_type_variation = &"SmallLabel"
-text = "Uma viajante curiosa. Objetos humanos à deriva. Histórias reais que merecem ser lembradas."
-autowrap_mode = 3
-
-[node name="Spacer" type="Control" parent="Center/MenuBox/VBox"]
-custom_minimum_size = Vector2(0, 12)
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons" unique_id=832317641]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="Center/MenuBox/VBox"]
+[node name="SettingsButton" type="Button" parent="Buttons/VBoxContainer" unique_id=473517704]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Começar"
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"MenuLink"
+theme_override_font_sizes/font_size = 25
+text = "ACCESSIBILITY & SOUND"
 
-[node name="NewStoryButton" type="Button" parent="Center/MenuBox/VBox"]
+[node name="CreditsButton" type="Button" parent="Buttons/VBoxContainer" unique_id=669621403]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Nova história"
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"MenuLink"
+theme_override_font_sizes/font_size = 25
+text = "CREDITS"
 
-[node name="SettingsButton" type="Button" parent="Center/MenuBox/VBox"]
+[node name="RestartButton" type="Button" parent="Buttons/VBoxContainer" unique_id=1196265151]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Acessibilidade e som"
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_type_variation = &"MenuLink"
+text = "RESTART (DEBUG)"
 
-[node name="QuitButton" type="Button" parent="Center/MenuBox/VBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_type_variation = &"GhostButton"
-text = "Sair"
-
-[node name="ConfirmOverlay" parent="." instance=ExtResource("4_confirm")]
+[node name="SettingsOverlay" parent="." unique_id=2065166625 instance=ExtResource("5_settings")]
 unique_name_in_owner = true
 layout_mode = 1
 
-[node name="SettingsOverlay" parent="." instance=ExtResource("5_settings")]
+[node name="CreditsOverlay" parent="." unique_id=434030251 instance=ExtResource("6_credits")]
 unique_name_in_owner = true
 layout_mode = 1

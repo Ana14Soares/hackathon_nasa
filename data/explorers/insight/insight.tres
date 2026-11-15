@@ -1,39 +1,38 @@
-[gd_resource type="Resource" script_class="ExplorerData" format=3]
+[gd_resource type="Resource" script_class="ExplorerData" format=3 uid="uid://cr1b5aoadxp4n"]
 
-[ext_resource type="Script" path="res://data/types/explorer_data.gd" id="1_ed"]
-[ext_resource type="Script" path="res://data/types/image_ref.gd" id="2_ir"]
-[ext_resource type="Texture2D" path="res://data/explorers/insight/img/insight.svg" id="3_sp"]
-[ext_resource type="Texture2D" path="res://assets/backdrops/mars.svg" id="4_bd"]
+[ext_resource type="Script" uid="uid://d1nbxt4kbefxi" path="res://data/types/explorer_data.gd" id="1_ed"]
+[ext_resource type="Texture2D" uid="uid://g1j6ql5ugk5v" path="res://data/explorers/insight/img/003.png" id="1_hmge8"]
+[ext_resource type="Script" uid="uid://buaewdso8p7hl" path="res://data/types/image_ref.gd" id="2_ir"]
+[ext_resource type="Texture2D" uid="uid://d101sol48wl83" path="res://data/explorers/insight/img/insight.svg" id="3_sp"]
+[ext_resource type="Texture2D" uid="uid://ynlvl7khjyip" path="res://assets/backdrops/mars.svg" id="4_bd"]
+[ext_resource type="Texture2D" uid="uid://cq7ep2hqqxkwt" path="res://data/explorers/insight/img/Cenário-Marte-Insight.svg" id="5_vn75c"]
 
 [sub_resource type="Resource" id="Resource_craft"]
 script = ExtResource("2_ir")
 key = &"craft"
 texture = ExtResource("3_sp")
-caption = "A InSight e seus dois painéis solares redondos."
-credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+caption = "InSight and its two round solar panels."
+credit = "Placeholder game illustration — replace with the official NASA image"
 source_url = "https://science.nasa.gov/mission/insight/"
 
 [sub_resource type="Resource" id="Resource_place"]
 script = ExtResource("2_ir")
 key = &"place"
 texture = ExtResource("4_bd")
-caption = "Elysium Planitia, a planície onde a InSight pousou."
-credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+caption = "Elysium Planitia, the plain where InSight landed."
+credit = "Placeholder game illustration — replace with the official NASA image"
 source_url = "https://science.nasa.gov/mission/insight/"
 
 [resource]
 script = ExtResource("1_ed")
 id = &"insight"
 display_name = "InSight"
-subtitle = "Sonda de pouso em Marte · 2018"
+subtitle = "Mars lander · 2018"
 region = "mars"
-window_backdrop = ExtResource("4_bd")
+window_backdrop = ExtResource("5_vn75c")
 sprite = ExtResource("3_sp")
-view_position = Vector2(800, 400)
-view_scale = 0.9
-idle_motion = true
-face_position = Vector2(0.5, 0.505)
-face_size = 0.22
+view_position = Vector2(940, 350)
+view_scale = 1.8
+diary_page = ExtResource("1_hmge8")
 radar_position = Vector2(-185, -38)
-unlock_after = Array[StringName]([])
 images = Array[ExtResource("2_ir")]([SubResource("Resource_craft"), SubResource("Resource_place")])

@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var _panel: Control = %Panel
 @onready var _resume_btn: Button = %ResumeButton
 @onready var _menu_btn: Button = %MainMenuButton
+@onready var _restart_btn: Button = %RestartButton
 
 
 func _ready() -> void:
@@ -15,6 +16,8 @@ func _ready() -> void:
 	_pause_btn.pressed.connect(open)
 	_resume_btn.pressed.connect(resume)
 	_menu_btn.pressed.connect(_go_to_menu)
+	_restart_btn.visible = GameState.DEBUG_RESTART      # só para debug
+	_restart_btn.pressed.connect(_restart)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -47,3 +50,8 @@ func resume() -> void:
 func _go_to_menu() -> void:
 	resume()
 	SceneRouter.go_to(&"menu")
+
+
+func _restart() -> void:
+	resume()
+	GameState.restart_game()

@@ -1,45 +1,65 @@
 {
   "arrival": [
-    {"who": "hero", "emo": "curious", "text": "A Lua! Daqui de cima ela parece tão quietinha..."},
-    {"who": "hero", "emo": "curious", "text": "Ali no chão tem uma coisa de pernas compridas. Parece um tripé!"},
-    {"who": "hero", "emo": "curious", "text": "Vamos descobrir quem é. Scanner, sua vez!"}
+    {
+      "who": "hero",
+      "emo": "",
+      "text": "That one has three legs and a little scoop. Was it digging? Let's scan it."
+    }
   ],
   "scan": [
-    {"who": "explorer", "emo": "", "text": "Oi! Eu sou o [b]Surveyor 3[/b]. Pousei na Lua em 20 de abril de 1967.", "image": "craft"},
-    {"who": "explorer", "emo": "", "text": "Meu pouso foi meio desajeitado: meus motores não desligaram na hora certa e eu quiquei antes de parar."},
-    {"who": "explorer", "emo": "", "text": "Os humanos queriam saber se o chão da Lua aguentaria o peso de uma nave com astronautas. Eu vim testar.", "image": "place"},
-    {"who": "explorer", "emo": "", "text": "Eu tinha uma pequena [b]pá mecânica[/b] e cavei o solo lunar para os cientistas verem como ele era."},
-    {"who": "explorer", "emo": "", "text": "Dois anos e meio depois, recebi visitas! Os astronautas da [b]Apollo 12[/b] pousaram pertinho de mim."},
-    {"who": "explorer", "emo": "", "text": "Eles levaram minha câmera e outras peças de volta para a Terra, para estudar como o espaço tinha me transformado."}
-  ],
-  "diary": {
-    "technical": {
-      "report": [
-        {"label": "TYPE", "value": "Sonda de pouso", "source": "nasa_surveyor3"},
-        {"label": "LAUNCH", "value": "17 de abril de 1967", "source": "nasa_surveyor3"},
-        {"label": "TARGET", "value": "Lua", "source": "nasa_surveyor3"},
-        {"label": "OBJECTIVE", "value": "Testar o solo lunar", "source": "nasa_surveyor3"}
-      ],
-      "summary": "O Surveyor 3 foi uma sonda que pousou suavemente na Lua para testar o solo antes das missões tripuladas. Ele é o único robô em outro mundo que já recebeu a visita de astronautas.",
-      "facts": [
-        {"label": "Lançamento", "value": "17 de abril de 1967", "source": "nasa_surveyor3"},
-        {"label": "Pouso", "value": "20 de abril de 1967, no Oceano das Tempestades (Lua)", "source": "nasa_surveyor3"},
-        {"label": "Missão", "value": "Testar o solo lunar antes das missões Apollo", "source": "nasa_surveyor3"},
-        {"label": "Ferramenta especial", "value": "Uma pá mecânica que cavou trincheiras no solo", "source": "nasa_surveyor3"},
-        {"label": "Visita", "value": "A Apollo 12 pousou perto dele em 19 de novembro de 1969", "source": "nasa_apollo12"},
-        {"label": "De volta à Terra", "value": "A câmera e outras peças foram trazidas pelos astronautas", "source": "nasa_apollo12"}
-      ],
-      "images": ["craft", "place"]
+    {
+      "who": "explorer",
+      "emo": "",
+      "text": "I'm Surveyor 3. I landed on the Moon in 1967, before the first humans walked there."
     },
-    "personal": "O Surveyor me fez rir: ele chegou quicando! Mas depois trabalhou direitinho, cavando o chão para ajudar os humanos a pisarem na Lua com segurança. E o mais bonito: ele foi visitado. Alguém voltou para vê-lo. Acho que todo explorador merece isso."
-  },
+    {
+      "who": "explorer",
+      "emo": "",
+      "text": "I took photographs and used my scoop to study the soil. That information helped prepare for the astronauts' journeys."
+    },
+    {
+      "who": "explorer",
+      "emo": "",
+      "text": "Two years later, I had visitors. The Apollo 12 astronauts landed nearby and came over to see me."
+    },
+    {
+      "who": "explorer",
+      "emo": "",
+      "text": "They photographed my equipment and took my camera and some other parts back to Earth."
+    },
+    {
+      "who": "explorer",
+      "emo": "",
+      "text": "By studying those parts, they could investigate what happens to materials after spending so long on the Moon."
+    }
+  ],
   "wrap_up": [
-    {"who": "hero", "emo": "warm", "text": "Vou guardar sua história no meu diário, Surveyor. Você não está mais esquecido."},
-    {"who": "hero", "emo": "curious", "text": "O radar está pronto. Para onde vamos agora?"}
+    {
+      "who": "hero",
+      "emo": "",
+      "text": "Another story in the log. Let's look for the next one."
+    }
   ],
   "reward_lines": [],
   "sources": {
-    "nasa_surveyor3": {"title": "NASA Science — Surveyor 3", "url": "https://science.nasa.gov/mission/surveyor-3/", "checked_on": "", "checked_by": ""},
-    "nasa_apollo12": {"title": "NASA — Apollo 12", "url": "https://www.nasa.gov/mission/apollo-12/", "checked_on": "", "checked_by": ""}
-  }
+    "nasa_surveyor3": {
+      "title": "NASA Science — Surveyor 3",
+      "url": "https://science.nasa.gov/mission/surveyor-3/",
+      "checked_on": "",
+      "checked_by": ""
+    },
+    "nasa_apollo12": {
+      "title": "NASA — Apollo 12",
+      "url": "https://www.nasa.gov/mission/apollo-12/",
+      "checked_on": "",
+      "checked_by": ""
+    }
+  },
+  "reaction": [
+    {
+      "who": "hero",
+      "emo": "",
+      "text": "They actually came to visit… I'm glad I got to see that."
+    }
+  ]
 }

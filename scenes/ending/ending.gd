@@ -25,24 +25,16 @@ func _ready() -> void:
 	if SceneRouter.is_busy():
 		await SceneRouter.transition_finished
 	await dialogue.play(DialogueLine.list_from(cfg.get("lines", [])))
+	# História concluída: apaga o progresso. Ao voltar ao menu, START recomeça do início.
 	GameState.finished = true
-	SaveManager.save()
+	SaveManager.delete()
+	GameState.reset()
+	await get_tree().create_timer(4.0).timeout           # segura a vista da Terra (a música continua)
 	_show_credits()
 
 
 func _show_credits() -> void:
-	var bb := "[b]Exploradores lembrados[/b]\n\n"
-	for id in ContentDB.all_ids():
-		var d := ContentDB.get_explorer(id)
-		var story := ContentDB.get_story(id)
-		bb += "[b]%s[/b] — %s\n" % [d.display_name, d.subtitle]
-		for img in d.images:
-			bb += "   Imagem \"%s\": %s\n" % [img.caption, img.credit]
-		for sid in story.cited_source_ids():
-			var s: Dictionary = story.sources.get(sid, {})
-			bb += "   Fonte: %s\n" % str(s.get("title", sid))
-		bb += "\n"
-	bb += "[i]Obrigada por lembrar deles.[/i]"
+	var bb := CreditsOverlay.build_bbcode()
 	credits_text.text = bb
 	credits.visible = true
 	menu_btn.grab_focus()

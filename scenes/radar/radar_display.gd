@@ -7,14 +7,14 @@ extends Control
 const RADIUS_UNITS := 450.0
 ## [nome, raio da órbita, ângulo em graus, tamanho, cor]
 const PLANETS := [
-	["Mercúrio", 45.0, 60.0, 5.0, Color("b9b1a3")],
-	["Vênus", 75.0, 160.0, 7.0, Color("e8cf8f")],
-	["Terra", 110.0, -30.0, 8.0, Color("5fa8ff")],
-	["Marte", 175.0, 200.0, 7.0, Color("e0704a")],
-	["Júpiter", 310.0, 30.0, 15.0, Color("e2b98a")],
-	["Saturno", 355.0, 120.0, 13.0, Color("e8d6a0")],
-	["Urano", 395.0, 250.0, 10.0, Color("9fe3e8")],
-	["Netuno", 425.0, 290.0, 10.0, Color("6c8dff")],
+	["Mercury", 45.0, 60.0, 5.0, Color("b9b1a3")],
+	["Venus", 75.0, 160.0, 7.0, Color("e8cf8f")],
+	["Earth", 110.0, -30.0, 8.0, Color("5fa8ff")],
+	["Mars", 175.0, 200.0, 7.0, Color("e0704a")],
+	["Jupiter", 310.0, 30.0, 15.0, Color("e2b98a")],
+	["Saturn", 355.0, 120.0, 13.0, Color("e8d6a0")],
+	["Uranus", 395.0, 250.0, 10.0, Color("9fe3e8")],
+	["Neptune", 425.0, 290.0, 10.0, Color("6c8dff")],
 ]
 const MOON := Vector2(125, -50)
 const BELT_INNER := 230.0
@@ -74,7 +74,7 @@ func _draw() -> void:
 		draw_circle(pos, maxf(3.0, pl[3] * k * 1.6), pl[4])
 		draw_string(font, pos + Vector2(10, -8), pl[0], HORIZONTAL_ALIGNMENT_LEFT, -1, fsize, Color(1, 1, 1, 0.55))
 	draw_circle(c + MOON * k, 4.0, Color("d8d8d8"))
-	draw_string(font, c + MOON * k + Vector2(8, 14), "Lua", HORIZONTAL_ALIGNMENT_LEFT, -1, fsize, Color(1, 1, 1, 0.5))
+	draw_string(font, c + MOON * k + Vector2(8, 14), "Moon", HORIZONTAL_ALIGNMENT_LEFT, -1, fsize, Color(1, 1, 1, 0.5))
 
 	# Sol
 	draw_circle(c, 16.0, Color("ffcf4a"))

@@ -1,39 +1,38 @@
-[gd_resource type="Resource" script_class="ExplorerData" format=3]
+[gd_resource type="Resource" script_class="ExplorerData" format=3 uid="uid://cl8ddtjjdyda4"]
 
-[ext_resource type="Script" path="res://data/types/explorer_data.gd" id="1_ed"]
-[ext_resource type="Script" path="res://data/types/image_ref.gd" id="2_ir"]
-[ext_resource type="Texture2D" path="res://data/explorers/spirit/img/spirit.svg" id="3_sp"]
-[ext_resource type="Texture2D" path="res://assets/backdrops/mars.svg" id="4_bd"]
+[ext_resource type="Texture2D" uid="uid://dcle6f6gx0txb" path="res://data/explorers/spirit/img/004.png" id="1_55n5g"]
+[ext_resource type="Script" uid="uid://d1nbxt4kbefxi" path="res://data/types/explorer_data.gd" id="1_ed"]
+[ext_resource type="Script" uid="uid://buaewdso8p7hl" path="res://data/types/image_ref.gd" id="2_ir"]
+[ext_resource type="Texture2D" uid="uid://dgvo6ureyklpn" path="res://data/explorers/spirit/img/spirit.svg" id="3_sp"]
+[ext_resource type="Texture2D" uid="uid://ynlvl7khjyip" path="res://assets/backdrops/mars.svg" id="4_bd"]
+[ext_resource type="Texture2D" uid="uid://vw3ry8od5pr4" path="res://data/explorers/spirit/img/Cenário-Marte-spirit.svg" id="5_tt3ad"]
 
 [sub_resource type="Resource" id="Resource_craft"]
 script = ExtResource("2_ir")
 key = &"craft"
 texture = ExtResource("3_sp")
-caption = "O Spirit, com seus painéis solares e seis rodas."
-credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+caption = "Spirit, with its solar panels and six wheels."
+credit = "Placeholder game illustration — replace with the official NASA image"
 source_url = "https://science.nasa.gov/mission/mer-spirit/"
 
 [sub_resource type="Resource" id="Resource_place"]
 script = ExtResource("2_ir")
 key = &"place"
 texture = ExtResource("4_bd")
-caption = "A cratera Gusev, em Marte."
-credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+caption = "Gusev Crater, on Mars."
+credit = "Placeholder game illustration — replace with the official NASA image"
 source_url = "https://science.nasa.gov/mission/mer-spirit/"
 
 [resource]
 script = ExtResource("1_ed")
 id = &"spirit"
 display_name = "Spirit"
-subtitle = "Robô explorador de Marte · 2004"
+subtitle = "Mars rover · 2004"
 region = "mars"
-window_backdrop = ExtResource("4_bd")
+window_backdrop = ExtResource("5_tt3ad")
 sprite = ExtResource("3_sp")
-view_position = Vector2(800, 400)
+view_position = Vector2(990, 370)
 view_scale = 0.9
-idle_motion = true
-face_position = Vector2(0.5, 0.6)
-face_size = 0.26
+diary_page = ExtResource("1_55n5g")
 radar_position = Vector2(-150, -85)
-unlock_after = Array[StringName]([])
 images = Array[ExtResource("2_ir")]([SubResource("Resource_craft"), SubResource("Resource_place")])

@@ -3,10 +3,10 @@ extends Control
 ## Balão de fala. Contrato: `await dialogue.play(lines)` só retorna depois que a
 ## última fala for dispensada.
 ##
-## Regras de retrato:
-##   • Lyra ("hero" / "hero_to_player") e narrador → balão só com texto, sem foto.
-##   • Equipamento ("explorer" ou um id do registro) → foto do equipamento no balão,
-##     texto em 1ª pessoa (ele mesmo conta a história).
+## Balões sem foto: só o nome de quem fala e o texto.
+##   • Lyra ("hero" / "hero_to_player") e narrador → texto (a Lyra com nome).
+##   • Equipamento ("explorer" ou um id do registro) → nome dele e texto em 1ª pessoa.
+##     O rostinho dele aparece na nave (talking_changed), não no balão.
 ##
 ## Responsividade: o balão é ancorado embaixo e cresce para cima conforme o
 ## conteúdo (grow_vertical = BEGIN). O texto tem quebra automática e o
@@ -31,15 +31,13 @@ var _tween: Tween
 var _shown_at := 0
 var _last_event: InputEvent
 var _speaker: ExplorerData
+var _talking := false
 
 @onready var _balloon: PanelContainer = %Balloon
-@onready var _portrait_frame: PanelContainer = %PortraitFrame
-@onready var _portrait: TextureRect = %Portrait
 @onready var _name: Label = %NameLabel
 @onready var _scroll: ScrollContainer = %TextScroll
 @onready var _text: RichTextLabel = %Text
 @onready var _hint: Label = %Hint
-@onready var _face: CuteFace = %PortraitFace
 
 
 func _ready() -> void:
@@ -48,7 +46,6 @@ func _ready() -> void:
 	_text.visible_characters_behavior = TextServer.VC_CHARS_AFTER_SHAPING
 	_balloon.gui_input.connect(_on_click)
 	_scroll.gui_input.connect(_on_click)
-	_portrait.resized.connect(_place_face)
 	Settings.changed.connect(_on_settings_changed)
 	_on_settings_changed()
 	set_process(false)
@@ -86,15 +83,13 @@ func _show_line(line: DialogueLine) -> void:
 	var speaker := _resolve_explorer(line.who)
 	var variation: StringName = &"Balloon"
 	var speaker_name := ""
-	var portrait: Texture2D = null
 
 	if speaker:
-		# O equipamento fala por si: nome dele e foto dele no balão.
+		# O equipamento fala por si: só o nome dele e a fala (sem foto).
 		speaker_name = speaker.display_name
-		portrait = speaker.get_portrait()
 		variation = &"BalloonExplorer"
 	elif line.is_hero():
-		# Lyra: balão só com texto, sem foto.
+		# Lyra: nome e fala.
 		speaker_name = ContentDB.protagonist_card.display_name
 		if line.who == "hero_to_player":
 			variation = &"BalloonFinal"
@@ -104,11 +99,6 @@ func _show_line(line: DialogueLine) -> void:
 	_set_talking(false)
 	_speaker = speaker
 	_balloon.theme_type_variation = variation
-	_portrait.texture = portrait
-	_portrait_frame.visible = portrait != null
-	# Equipamento falando: a foto ganha o mesmo rostinho personificado.
-	_face.visible = speaker != null
-	_place_face()
 	_name.text = speaker_name
 	_name.visible = speaker_name != ""
 	_text.text = ("[i]%s[/i]" % line.text) if variation == &"BalloonNarrator" else line.text
@@ -130,19 +120,14 @@ func _show_line(line: DialogueLine) -> void:
 	_fit_height()
 
 
-## A boca só mexe enquanto o texto está sendo digitado.
+## A boca do equipamento (rostinho na nave) só mexe enquanto o texto é digitado.
 func _set_talking(on: bool) -> void:
 	on = on and _speaker != null
-	if _face.talking == on:
+	if _talking == on:
 		return
-	_face.talking = on
+	_talking = on
 	if _speaker:
 		talking_changed.emit(_speaker, on)
-
-
-func _place_face() -> void:
-	if _speaker:
-		_face.place(_speaker.face_position, _speaker.face_size, _portrait.size)
 
 
 func _resolve_explorer(who: String) -> ExplorerData:
@@ -202,10 +187,8 @@ func _fit_height() -> void:
 		_scroll.custom_minimum_size.y = target
 	var overflow := content_h > max_h + 1.0
 	_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO if overflow else ScrollContainer.SCROLL_MODE_DISABLED
-	_hint.text = "Role para ler tudo · clique ou Enter para continuar" if overflow else "Clique, Enter ou Espaço para continuar ▸"
+	_hint.text = "Scroll to read it all · click or Enter to continue" if overflow else "Click, Enter or Space to continue ▸"
 
 
 func _on_settings_changed() -> void:
-	var s := clampf(Settings.font_scale(), 1.0, 1.35)
-	_portrait.custom_minimum_size = Vector2(150, 150) * s
 	_fit_height()

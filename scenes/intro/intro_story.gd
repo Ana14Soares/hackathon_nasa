@@ -21,6 +21,12 @@ func _ready() -> void:
 		var t := create_tween().set_loops()
 		t.tween_property(_saucer, "position:y", _saucer.position.y - 16.0, 1.8).set_trans(Tween.TRANS_SINE)
 		t.tween_property(_saucer, "position:y", _saucer.position.y + 16.0, 1.8).set_trans(Tween.TRANS_SINE)
+		var y := _speck.position.y
+		var t2 := create_tween().set_loops()
+		t2.tween_property(_speck, "position:y", y - 14.0, 2.2).set_trans(Tween.TRANS_SINE)
+		t2.parallel().tween_property(_speck, "rotation", 0.05, 2.2).set_trans(Tween.TRANS_SINE)
+		t2.tween_property(_speck, "position:y", y + 14.0, 2.2).set_trans(Tween.TRANS_SINE)
+		t2.parallel().tween_property(_speck, "rotation", -0.05, 2.2).set_trans(Tween.TRANS_SINE)
 	_lines = ContentDB.load_lines(INTRO_JSON)
 	_dialogue.line_started.connect(_on_line_started)
 	if SceneRouter.is_busy():

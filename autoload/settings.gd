@@ -32,7 +32,8 @@ var theme: Theme
 
 # Fontes do diário. Coloque um .ttf/.otf nesses caminhos para fixar a fonte
 # (recomendado para exportação Web); sem arquivo, usa fontes do sistema.
-const MONO_FONT_PATH := "res://assets/fonts/mono.ttf"
+const GAME_FONT_PATH := "res://assets/fonts/ibm_plex_mono_semibold.ttf"   # fonte de todos os textos
+const MONO_FONT_PATH := GAME_FONT_PATH
 const HAND_FONT_PATH := "res://assets/fonts/handwriting.ttf"
 var _mono: Font
 var _mono_title: Font
@@ -45,6 +46,8 @@ const D_RULE := Color("8c8c8c")
 const D_TAB := Color("ababab")
 const D_TAB_ON := Color("e4e4e4")
 const D_IMAGE := Color("d9d9d9")
+const D_NUMBER := Color("1c3558")   # azul escuro do número nas abas
+const D_YELLOW := Color("e9c64a")   # amarelo das abas e do botão fechar
 
 
 const THEMED_GROUP := &"_settings_themed"
@@ -120,6 +123,8 @@ func _save() -> void:
 func _build_theme() -> Theme:
 	var t := Theme.new()
 	t.default_font_size = fs(BASE_FONT)
+	if ResourceLoader.exists(GAME_FONT_PATH):
+		t.default_font = load(GAME_FONT_PATH)   # vale para todos os textos do jogo
 	for type in [&"Label", &"Button", &"CheckButton", &"CheckBox", &"LinkButton", &"LineEdit"]:
 		t.set_font_size(&"font_size", type, fs(BASE_FONT))
 	for item in [&"normal_font_size", &"bold_font_size", &"italics_font_size", &"bold_italics_font_size", &"mono_font_size"]:
@@ -149,7 +154,6 @@ func _build_theme() -> Theme:
 	_panel_var(t, &"BalloonFinal", _box(Color(C_FINAL, 0.97), Color("8fe0b8"), 3, 18, 26))
 	_panel_var(t, &"BalloonNarrator", _box(Color(0.03, 0.03, 0.06, 0.9), Color(1, 1, 1, 0.15), 1, 18, 24))
 	_panel_var(t, &"PortraitFrame", _box(Color("05080c"), C_HOLO, 2, 12, 6))
-	_panel_var(t, &"Holo", _box(Color(0.04, 0.14, 0.2, 0.88), C_HOLO, 2, 12, 18))
 	_panel_var(t, &"Book", _box(Color("2b2238"), Color("8a6d3b"), 4, 20, 24))
 	_panel_var(t, &"Paper", _box(C_PAPER, Color("d8cfb8"), 2, 10, 24))
 	_panel_var(t, &"MenuBox", _box(Color("111018", 0.95), C_ACCENT_DARK, 2, 20, 36))
@@ -170,8 +174,55 @@ func _build_theme() -> Theme:
 	t.set_color(&"font_hover_pressed_color", &"ItemCard", Color.WHITE)
 	t.set_constant(&"icon_max_width", &"ItemCard", fs(110))
 	t.set_constant(&"icon_max_width", &"RadarMarker", fs(48))
+	_icon_only_styles(t)
+	_menu_styles(t)
 	_diary_styles(t)
 	return t
+
+
+## Menu inicial. A arte do botão START vem do próprio nó (Theme Overrides → Styles
+## no editor); aqui só existe a variação "MenuStart", vazia, para o tema não
+## desenhar nada por trás da sua arte. Também define os links de texto (MenuLink).
+func _menu_styles(t: Theme) -> void:
+	t.set_type_variation(&"MenuStart", &"Button")
+	var blank := StyleBoxEmpty.new()
+	for state in [&"normal", &"hover", &"pressed", &"disabled", &"focus"]:
+		t.set_stylebox(state, &"MenuStart", blank)
+
+	t.set_type_variation(&"MenuLink", &"Button")
+	var none := StyleBoxEmpty.new()
+	none.set_content_margin_all(8)
+	for state in [&"normal", &"hover", &"pressed", &"disabled"]:
+		t.set_stylebox(state, &"MenuLink", none)
+	var lf := StyleBoxFlat.new()
+	lf.draw_center = false
+	lf.border_color = Color("ffd23f")
+	lf.set_border_width_all(3)
+	lf.set_corner_radius_all(10)
+	t.set_stylebox(&"focus", &"MenuLink", lf)
+	t.set_font_size(&"font_size", &"MenuLink", fs(25))
+	t.set_color(&"font_color", &"MenuLink", Color.WHITE)
+	t.set_color(&"font_hover_color", &"MenuLink", Color("ffd23f"))
+	t.set_color(&"font_pressed_color", &"MenuLink", Color("ffd23f"))
+	t.set_color(&"font_focus_color", &"MenuLink", Color.WHITE)
+
+
+## Botão que é só a arte (sem fundo). O pulso clareia a imagem; com "reduzir
+## movimento" aparece um contorno fixo (variação IconOnlyPulse).
+func _icon_only_styles(t: Theme) -> void:
+	for type_name in [&"IconOnly", &"IconOnlyPulse"]:
+		t.set_type_variation(type_name, &"Button")
+		var empty := StyleBoxEmpty.new()
+		for s in [&"normal", &"hover", &"pressed", &"disabled"]:
+			t.set_stylebox(s, type_name, empty)
+		t.set_stylebox(&"focus", type_name, empty)   # sem anel amarelo de foco
+		t.set_constant(&"icon_max_width", type_name, 0)   # 0 = sem limite
+		t.set_color(&"icon_disabled_color", type_name, Color.WHITE)   # sem apagar o ícone quando desabilitado
+		t.set_color(&"icon_hover_color", type_name, Color(1.2, 1.2, 1.2))
+	var ring := _box(Color.TRANSPARENT, Color("ffd23f"), 5, 10, 0)
+	ring.draw_center = false
+	for s in [&"normal", &"hover", &"pressed"]:
+		t.set_stylebox(s, &"IconOnlyPulse", ring)
 
 
 # --- Diário de bordo (relatório de missão) -------------------------------------
@@ -211,6 +262,31 @@ func _diary_styles(t: Theme) -> void:
 	_panel_var(t, &"DiaryRowLast", last)
 
 	_panel_var(t, &"DiaryTabHeader", _chamfer(D_TAB, Color.TRANSPARENT, 0))
+
+	# Abas do diário: áreas clicáveis INVISÍVEIS sobre as abas desenhadas na arte da página.
+	t.set_type_variation(&"DiaryTabInvisible", &"Button")
+	var blank := StyleBoxEmpty.new()
+	for state in [&"normal", &"hover", &"pressed", &"hover_pressed", &"disabled", &"focus"]:
+		t.set_stylebox(state, &"DiaryTabInvisible", blank)
+	# Número (001…) mostrado sobre as abas já desbloqueadas, no estilo do número da arte.
+	t.set_font(&"font", &"DiaryTabInvisible", _mono_title)
+	t.set_font_size(&"font_size", &"DiaryTabInvisible", fs(29))
+	for c in [&"font_color", &"font_hover_color", &"font_pressed_color", &"font_focus_color", &"font_hover_pressed_color", &"font_disabled_color"]:
+		t.set_color(c, &"DiaryTabInvisible", D_NUMBER)
+
+	# Botão de fechar: o mesmo amarelo das abas da arte.
+	t.set_type_variation(&"DiaryClose", &"Button")
+	t.set_stylebox(&"normal", &"DiaryClose", _chamfer(D_YELLOW, Color.TRANSPARENT, 0))
+	t.set_stylebox(&"hover", &"DiaryClose", _chamfer(D_YELLOW.lightened(0.15), Color.TRANSPARENT, 0))
+	t.set_stylebox(&"pressed", &"DiaryClose", _chamfer(D_YELLOW.darkened(0.12), Color.TRANSPARENT, 0))
+	t.set_stylebox(&"disabled", &"DiaryClose", _chamfer(D_YELLOW, Color.TRANSPARENT, 0))
+	var yf := _chamfer(Color.TRANSPARENT, D_INK, 3)
+	yf.draw_center = false
+	t.set_stylebox(&"focus", &"DiaryClose", yf)
+	t.set_font(&"font", &"DiaryClose", _mono)
+	t.set_font_size(&"font_size", &"DiaryClose", fs(18))
+	for c in [&"font_color", &"font_hover_color", &"font_pressed_color", &"font_focus_color", &"font_hover_pressed_color", &"font_disabled_color"]:
+		t.set_color(c, &"DiaryClose", D_INK)
 	t.set_type_variation(&"DiaryTab", &"Button")
 	t.set_stylebox(&"normal", &"DiaryTab", _chamfer(D_TAB, Color.TRANSPARENT, 0))
 	t.set_stylebox(&"hover", &"DiaryTab", _chamfer(D_TAB.lightened(0.15), Color.TRANSPARENT, 0))
@@ -303,7 +379,7 @@ func _button_styles(t: Theme, type_name: StringName, bg: Color, fg: Color, borde
 	t.set_stylebox(&"normal", type_name, _box(bg, border, bw, radius, 14))
 	t.set_stylebox(&"hover", type_name, _box(bg.lightened(0.12), border.lightened(0.2), bw + 1, radius, 14))
 	t.set_stylebox(&"pressed", type_name, _box(bg.darkened(0.15), border, bw + 1, radius, 14))
-	t.set_stylebox(&"disabled", type_name, _box(Color(bg, 0.35), Color(border, 0.3), bw, radius, 14))
+	t.set_stylebox(&"disabled", type_name, _box(bg, border, bw, radius, 14))   # opaco, igual ao normal
 	var focus := _box(Color.TRANSPARENT, Color("ffd23f"), 4, radius, 14)
 	focus.draw_center = false
 	t.set_stylebox(&"focus", type_name, focus)
@@ -312,4 +388,4 @@ func _button_styles(t: Theme, type_name: StringName, bg: Color, fg: Color, borde
 	t.set_color(&"font_pressed_color", type_name, fg)
 	t.set_color(&"font_focus_color", type_name, fg)
 	t.set_color(&"font_hover_pressed_color", type_name, fg)
-	t.set_color(&"font_disabled_color", type_name, Color(fg, 0.45))
+	t.set_color(&"font_disabled_color", type_name, fg)

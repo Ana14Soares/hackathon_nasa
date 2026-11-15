@@ -62,7 +62,7 @@ theme_override_constants/separation = 16
 [node name="Title" type="Label" parent="UiLayer/Credits/Panel/VBox"]
 layout_mode = 2
 theme_type_variation = &"HeadingLabel"
-text = "Fim da história"
+text = "The End"
 
 [node name="Scroll" type="ScrollContainer" parent="UiLayer/Credits/Panel/VBox"]
 layout_mode = 2
@@ -81,6 +81,6 @@ autowrap_mode = 3
 [node name="MenuButton" type="Button" parent="UiLayer/Credits/Panel/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Voltar ao menu inicial"
+text = "Back to main menu"
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_pause")]

@@ -11,11 +11,11 @@ var _sfx: HSlider
 
 func _ready() -> void:
 	add_theme_constant_override(&"separation", 12)
-	_large = _check("Texto grande (modo acessibilidade)", Settings.large_text, &"large_text")
-	_motion = _check("Reduzir movimento", Settings.reduce_motion, &"reduce_motion")
-	_speed = _slider("Velocidade do texto", 15.0, 120.0, 5.0, Settings.text_speed, &"text_speed")
-	_music = _slider("Volume da música", 0.0, 1.0, 0.05, Settings.music_volume, &"music_volume")
-	_sfx = _slider("Volume dos efeitos", 0.0, 1.0, 0.05, Settings.sfx_volume, &"sfx_volume")
+	_large = _check("Large text (accessibility mode)", Settings.large_text, &"large_text")
+	_motion = _check("Reduce motion", Settings.reduce_motion, &"reduce_motion")
+	_speed = _slider("Text speed", 15.0, 120.0, 5.0, Settings.text_speed, &"text_speed")
+	_music = _slider("Music volume", 0.0, 1.0, 0.05, Settings.music_volume, &"music_volume")
+	_sfx = _slider("Effects volume", 0.0, 1.0, 0.05, Settings.sfx_volume, &"sfx_volume")
 
 
 func _check(text: String, value: bool, key: StringName) -> CheckButton:

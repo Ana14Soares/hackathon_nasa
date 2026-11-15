@@ -1,39 +1,39 @@
-[gd_resource type="Resource" script_class="ExplorerData" format=3]
+[gd_resource type="Resource" script_class="ExplorerData" format=3 uid="uid://d3v6i2h3chqkn"]
 
-[ext_resource type="Script" path="res://data/types/explorer_data.gd" id="1_ed"]
-[ext_resource type="Script" path="res://data/types/image_ref.gd" id="2_ir"]
-[ext_resource type="Texture2D" path="res://data/explorers/near_shoemaker/img/near_shoemaker.svg" id="3_sp"]
-[ext_resource type="Texture2D" path="res://assets/backdrops/eros.svg" id="4_bd"]
+[ext_resource type="Texture2D" uid="uid://bjrwbegk1t8jb" path="res://data/explorers/near_shoemaker/img/006.png" id="1_0l5d4"]
+[ext_resource type="Script" uid="uid://d1nbxt4kbefxi" path="res://data/types/explorer_data.gd" id="1_ed"]
+[ext_resource type="Script" uid="uid://buaewdso8p7hl" path="res://data/types/image_ref.gd" id="2_ir"]
+[ext_resource type="Texture2D" uid="uid://b2vsbj17s00tp" path="res://data/explorers/near_shoemaker/img/near_shoemaker.svg" id="3_sp"]
+[ext_resource type="Texture2D" uid="uid://bk7c1ayns1lr1" path="res://assets/backdrops/eros.svg" id="4_bd"]
+[ext_resource type="Texture2D" uid="uid://0sfwv2f6x84y" path="res://data/explorers/near_shoemaker/img/shoemaker.svg" id="5_kgfwd"]
+[ext_resource type="Texture2D" uid="uid://k581d0l32e25" path="res://data/explorers/near_shoemaker/img/Cenário-Marte-shoemaker.svg" id="6_0l5d4"]
 
 [sub_resource type="Resource" id="Resource_craft"]
 script = ExtResource("2_ir")
 key = &"craft"
 texture = ExtResource("3_sp")
-caption = "A NEAR Shoemaker e seus quatro painéis solares."
-credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+caption = "NEAR Shoemaker with its four solar panels."
+credit = "Placeholder game illustration — replace with the official NASA image"
 source_url = "https://science.nasa.gov/mission/near-shoemaker/"
 
 [sub_resource type="Resource" id="Resource_place"]
 script = ExtResource("2_ir")
 key = &"place"
 texture = ExtResource("4_bd")
-caption = "O asteroide 433 Eros, onde a NEAR pousou."
-credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+caption = "Asteroid 433 Eros, where NEAR landed."
+credit = "Placeholder game illustration — replace with the official NASA image"
 source_url = "https://science.nasa.gov/mission/near-shoemaker/"
 
 [resource]
 script = ExtResource("1_ed")
 id = &"near_shoemaker"
 display_name = "NEAR Shoemaker"
-subtitle = "Sonda de asteroide · 1996"
+subtitle = "Asteroid probe · 1996"
 region = "asteroid"
-window_backdrop = ExtResource("4_bd")
-sprite = ExtResource("3_sp")
-view_position = Vector2(800, 400)
+window_backdrop = ExtResource("6_0l5d4")
+sprite = ExtResource("5_kgfwd")
+view_position = Vector2(970, 410)
 view_scale = 0.85
-idle_motion = true
-face_position = Vector2(0.5, 0.5)
-face_size = 0.24
+diary_page = ExtResource("1_0l5d4")
 radar_position = Vector2(-24, 138)
-unlock_after = Array[StringName]([])
 images = Array[ExtResource("2_ir")]([SubResource("Resource_craft"), SubResource("Resource_place")])

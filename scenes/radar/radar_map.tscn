@@ -1,12 +1,12 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scenes/radar/radar_map.gd" id="1_map"]
-[ext_resource type="Script" path="res://ui/common/starfield.gd" id="2_stars"]
-[ext_resource type="Script" path="res://scenes/radar/radar_display.gd" id="3_display"]
-[ext_resource type="Texture2D" path="res://assets/art/lyra_saucer.svg" id="4_saucer"]
-[ext_resource type="Texture2D" path="res://assets/ui/icon_diary.svg" id="5_diary"]
-[ext_resource type="Texture2D" path="res://assets/ui/icon_id.svg" id="6_id"]
-[ext_resource type="PackedScene" path="res://ui/overlays/diary_book.tscn" id="7_book"]
+[ext_resource type="Script" uid="uid://djc2cuif8vwne" path="res://scenes/radar/radar_map.gd" id="1_map"]
+[ext_resource type="Script" uid="uid://hdevqd36bkr5" path="res://ui/common/starfield.gd" id="2_stars"]
+[ext_resource type="Script" uid="uid://mxgy6qoy117o" path="res://scenes/radar/radar_display.gd" id="3_display"]
+[ext_resource type="Texture2D" uid="uid://2i8vxlccge18" path="res://assets/art/lyra_saucer.svg" id="4_saucer"]
+[ext_resource type="Texture2D" uid="uid://d25ggukjxqxe" path="res://assets/ui/icon_diary_default.svg" id="5_diary"]
+[ext_resource type="Texture2D" uid="uid://dqisusr22qwwn" path="res://assets/ui/icon_id.svg" id="6_id"]
+[ext_resource type="PackedScene" uid="uid://dxykafwvx8646" path="res://ui/overlays/diary_book.tscn" id="7_book"]
 [ext_resource type="PackedScene" path="res://ui/overlays/id_card_overlay.tscn" id="8_card"]
 [ext_resource type="PackedScene" path="res://ui/overlays/confirm_overlay.tscn" id="9_confirm"]
 [ext_resource type="PackedScene" path="res://ui/pause_menu/pause_menu.tscn" id="10_pause"]
@@ -64,7 +64,7 @@ stretch_mode = 5
 [node name="Label" type="Label" parent="RadarDisplay/YouAreHere"]
 layout_mode = 2
 theme_type_variation = &"SmallLabel"
-text = "Você está aqui"
+text = "You are here"
 horizontal_alignment = 1
 
 [node name="Markers" type="Control" parent="RadarDisplay"]
@@ -86,7 +86,7 @@ offset_right = 300.0
 offset_bottom = 96.0
 mouse_default_cursor_shape = 2
 theme_type_variation = &"GhostButton"
-text = "Cartão da Lyra"
+text = "Lyra's card"
 icon = ExtResource("6_id")
 
 [node name="DiaryButton" type="Button" parent="."]
@@ -101,8 +101,7 @@ offset_right = 224.0
 offset_bottom = 100.0
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-text = "Diário
-de bordo"
+text = "Logbook"
 icon = ExtResource("5_diary")
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -140,7 +139,7 @@ autowrap_mode = 3
 [node name="ScaleNote" type="Label" parent="InfoPanel/VBox"]
 layout_mode = 2
 theme_type_variation = &"SmallLabel"
-text = "Distâncias e tamanhos fora de escala."
+text = "Distances and sizes are not to scale."
 autowrap_mode = 3
 
 [node name="BackButton" type="Button" parent="."]
@@ -158,7 +157,7 @@ offset_bottom = -24.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_default_cursor_shape = 2
-text = "Voltar à nave"
+text = "Back to ship"
 
 [node name="UiLayer" type="CanvasLayer" parent="."]
 layer = 10

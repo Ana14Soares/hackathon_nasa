@@ -8,14 +8,12 @@ Menu → História inicial (Lyra relembra o dia em que encontrou o Pioneer 10) �
 (chegada → **scan**: o equipamento fala em 1ª pessoa → **diário** → fechamento) →
 Placa Pioneer desbloqueia o **radar** → viagem (warp) ao próximo → … → Cena final com a Terra.
 
-Equipamentos: Pioneer 10, Surveyor 3, Eagle (Apollo 11), Spirit, NEAR Shoemaker, Dawn, InSight.
+Equipamentos: Pioneer 10, Surveyor 3, Eagle (Apollo 11), Spirit, NEAR Shoemaker, Sojourner, InSight.
 
 ## Regras de interface
 - **Radar** sempre centralizado na tela. Na nave, o **Diário de bordo** fica no painel de controle,
   à esquerda do botão Radar solar; na tela do radar, fica à esquerda do mapa.
-- **Personificação**: quando o equipamento se apresenta no scan, ganha um rostinho
-  (`ui/cute_face/cute_face.gd`) que pisca e mexe a boca enquanto o texto do balão é digitado,
-  na janela e na foto do balão. Posição e tamanho do rosto vêm de `face_position`/`face_size` no `.tres`.
+- **Scanner no vidro**: durante a fala do equipamento no scan (some quando ele termina), dois quadros (`assets/ui/scanner_animation1/2.svg`, nó `ScannerAnim` da nave) se alternam enquanto o equipamento fala. Cada equipamento pode ter os seus em `scanner_frames` no `.tres`.
 - **Diário** no formato "Mission report": moldura desenhada em `ui/overlays/diary_frame.gd`, relatório
   (TYPE/LAUNCH/TARGET/OBJECTIVE, campo `report` do JSON), NOTES manuscritas da Lyra e uma aba por
   equipamento (as coletadas mostram a miniatura). Fontes: coloque `assets/fonts/mono.ttf` e
@@ -24,6 +22,12 @@ Equipamentos: Pioneer 10, Surveyor 3, Eagle (Apollo 11), Spirit, NEAR Shoemaker,
 - **Balões**: Lyra fala só com texto (sem foto); o equipamento fala com a foto dele.
 - **Texto grande** (Acessibilidade): o tema global escala fontes e margens; o balão cresce
   para cima com o texto e, se passar de 50% da tela, rola em vez de cortar.
+
+## Fundo, equipamento e animação (por equipamento, no `.tres`)
+Janela da nave: `window_backdrop` (fundo), `sprite` (equipamento), `view_position`/`view_scale`,
+`show_starfield`. Animação: `idle_motion`, `idle_style` (float / drift / spin / breathe),
+`idle_amplitude`, `idle_speed`. Folha de sprites: `frames_h`, `frames_v`, `frames_fps`.
+A arte da nave (`scenes/ship/ship_design.svg`) precisa ter a janela transparente.
 
 ## Adicionar um equipamento (sem código)
 1. Duplique uma pasta em `data/explorers/`.

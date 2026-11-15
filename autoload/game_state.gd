@@ -3,6 +3,9 @@ extends Node
 
 enum Status { NOT_VISITED, ARRIVED, SCANNED, COMPLETED }
 
+## Botão "Reiniciar (debug)" no menu e na pausa. Mude para false na versão final.
+const DEBUG_RESTART := true
+
 signal status_changed(id: StringName, status: Status)
 signal flag_changed(flag: StringName, value: bool)
 
@@ -86,6 +89,13 @@ func resume_scene() -> StringName:
 	if current_explorer != &"" and get_status(current_explorer) != Status.COMPLETED:
 		return &"encounter"
 	return &"radar"
+
+
+## Apaga o save, zera o progresso e recomeça pela história inicial.
+func restart_game() -> void:
+	SaveManager.delete()
+	reset()
+	SceneRouter.go_to(&"intro")
 
 
 func reset() -> void:

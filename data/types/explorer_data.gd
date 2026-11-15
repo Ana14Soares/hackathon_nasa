@@ -14,11 +14,30 @@ extends Resource
 @export var portrait: Texture2D             # foto no balão quando o equipamento fala; vazio = sprite
 @export var view_position := Vector2(960, 420)
 @export var view_scale := 1.0
-@export var idle_motion := true             # flutua suavemente
+@export var show_starfield := true          # estrelas atrás do fundo; desligue se o fundo for uma imagem cheia
 
-@export_group("Rostinho")
-@export var face_position := Vector2(0.5, 0.5)   # centro do rosto, normalizado no sprite (0..1)
-@export_range(0.05, 0.8) var face_size := 0.3    # largura do rosto em fração da largura do sprite
+@export_group("Animação do equipamento")
+@export var idle_motion := true             # liga/desliga toda a animação
+@export_enum("float", "drift", "spin", "breathe") var idle_style: String = "float"
+## float = sobe e desce balançando · drift = deriva devagar de lado a lado
+## spin = gira lentamente · breathe = cresce e encolhe de leve
+@export_range(0.0, 80.0) var idle_amplitude := 14.0   # alcance do movimento (px na tela 1920×1080)
+@export_range(0.1, 4.0) var idle_speed := 1.0         # 1 = padrão; maior = mais rápido
+## Folha de sprites (opcional): se o `sprite` for uma grade de quadros, informe
+## colunas × linhas e a velocidade. 1×1 = imagem estática.
+@export_range(1, 32) var frames_h := 1
+@export_range(1, 32) var frames_v := 1
+@export_range(1.0, 30.0) var frames_fps := 8.0
+
+@export_group("Scanner")
+## Os 2 quadros que se alternam no vidro enquanto ele fala. Vazio = usa os padrão
+## do nó ScannerAnim (cena da nave).
+@export var scanner_frames: Array[Texture2D] = []
+
+@export_group("Diário")
+## Página completa do diário deste equipamento (arte pronta, com os textos).
+## Todas as páginas devem ter a mesma proporção (ex.: 1300×787).
+@export var diary_page: Texture2D
 
 @export_group("Radar")
 @export var radar_position := Vector2.ZERO  # em unidades do radar (borda = 450)

@@ -1,8 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://dxykafwvx8646"]
 
 [ext_resource type="Script" path="res://ui/overlays/diary_book.gd" id="1_diary"]
-[ext_resource type="Script" path="res://ui/overlays/diary_frame.gd" id="2_frame"]
-[ext_resource type="Script" path="res://ui/cute_face/cute_face.gd" id="3_face"]
 
 [node name="DiaryBook" type="Control"]
 visible = false
@@ -25,147 +23,157 @@ mouse_filter = 2
 color = Color(0.11, 0.11, 0.11, 0.92)
 
 [node name="Aspect" type="AspectRatioContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_left = 0.03
 anchor_top = 0.1
 anchor_right = 0.97
 anchor_bottom = 0.97
 grow_horizontal = 2
 grow_vertical = 2
-ratio = 1.654
+ratio = 1.652
 
 [node name="Frame" type="Control" parent="Aspect"]
 layout_mode = 2
-script = ExtResource("2_frame")
+mouse_filter = 0
 
-[node name="Columns" type="HBoxContainer" parent="Aspect/Frame"]
+[node name="Page" type="TextureRect" parent="Aspect/Frame"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
-anchor_left = 0.086
-anchor_top = 0.12
-anchor_right = 0.8
-anchor_bottom = 0.93
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 56
-
-[node name="LeftScroll" type="ScrollContainer" parent="Aspect/Frame/Columns"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-horizontal_scroll_mode = 0
-
-[node name="Left" type="VBoxContainer" parent="Aspect/Frame/Columns/LeftScroll"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 22
-
-[node name="ReportHeader" type="Label" parent="Aspect/Frame/Columns/LeftScroll/Left"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_type_variation = &"DiaryMono"
-text = "MISSION REPORT / EQUIPMENT 001"
-autowrap_mode = 3
-
-[node name="ImageBox" type="PanelContainer" parent="Aspect/Frame/Columns/LeftScroll/Left"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 230)
-layout_mode = 2
-theme_type_variation = &"DiaryImageBox"
-
-[node name="Image" type="TextureRect" parent="Aspect/Frame/Columns/LeftScroll/Left/ImageBox"]
-unique_name_in_owner = true
-layout_mode = 2
+mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ImageFace" type="Control" parent="Aspect/Frame/Columns/LeftScroll/Left/ImageBox/Image"]
+[node name="Missing" type="PanelContainer" parent="Aspect/Frame"]
 unique_name_in_owner = true
-layout_mode = 0
-mouse_filter = 2
-script = ExtResource("3_face")
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"DiaryImageBox"
 
-[node name="NameLabel" type="Label" parent="Aspect/Frame/Columns/LeftScroll/Left"]
+[node name="MissingText" type="Label" parent="Aspect/Frame/Missing"]
 unique_name_in_owner = true
-layout_mode = 2
-theme_type_variation = &"DiaryTitle"
-text = "PIONEER 10"
-autowrap_mode = 3
-
-[node name="Table" type="VBoxContainer" parent="Aspect/Frame/Columns/LeftScroll/Left"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Footer" type="VBoxContainer" parent="Aspect/Frame/Columns/LeftScroll/Left"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="RightScroll" type="ScrollContainer" parent="Aspect/Frame/Columns"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.2
-horizontal_scroll_mode = 0
-
-[node name="Right" type="VBoxContainer" parent="Aspect/Frame/Columns/RightScroll"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 40
-
-[node name="NotesHeader" type="Label" parent="Aspect/Frame/Columns/RightScroll/Right"]
 layout_mode = 2
 theme_type_variation = &"DiaryMono"
-text = "NOTES"
-
-[node name="Notes" type="RichTextLabel" parent="Aspect/Frame/Columns/RightScroll/Right"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"DiaryNotes"
-bbcode_enabled = true
-fit_content = true
-scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Tabs" type="VBoxContainer" parent="Aspect/Frame"]
+[node name="Tabs" type="Control" parent="Aspect/Frame"]
 unique_name_in_owner = true
 layout_mode = 1
-anchor_left = 0.9025
-anchor_top = 0.039
-anchor_right = 0.962
-anchor_bottom = 0.039
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-theme_override_constants/separation = 18
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="NumberBox" type="PanelContainer" parent="Aspect/Frame/Tabs"]
-layout_mode = 2
-theme_type_variation = &"DiaryTabHeader"
+[node name="Tab1" type="Button" parent="Aspect/Frame/Tabs"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.902
+anchor_top = 0.0398
+anchor_right = 0.962
+anchor_bottom = 0.0962
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"DiaryTabInvisible"
 
-[node name="Number" type="Label" parent="Aspect/Frame/Tabs/NumberBox"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_type_variation = &"DiaryNumber"
-text = "001"
-horizontal_alignment = 1
+[node name="Tab2" type="Button" parent="Aspect/Frame/Tabs"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.902
+anchor_top = 0.1369
+anchor_right = 0.962
+anchor_bottom = 0.1934
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"DiaryTabInvisible"
 
-[node name="TabList" type="VBoxContainer" parent="Aspect/Frame/Tabs"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 18
+[node name="Tab3" type="Button" parent="Aspect/Frame/Tabs"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.902
+anchor_top = 0.2340
+anchor_right = 0.962
+anchor_bottom = 0.2905
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"DiaryTabInvisible"
+
+[node name="Tab4" type="Button" parent="Aspect/Frame/Tabs"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.902
+anchor_top = 0.3312
+anchor_right = 0.962
+anchor_bottom = 0.3876
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"DiaryTabInvisible"
+
+[node name="Tab5" type="Button" parent="Aspect/Frame/Tabs"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.902
+anchor_top = 0.4283
+anchor_right = 0.962
+anchor_bottom = 0.4848
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"DiaryTabInvisible"
+
+[node name="Tab6" type="Button" parent="Aspect/Frame/Tabs"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.902
+anchor_top = 0.5254
+anchor_right = 0.962
+anchor_bottom = 0.5819
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"DiaryTabInvisible"
+
+[node name="Tab7" type="Button" parent="Aspect/Frame/Tabs"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.902
+anchor_top = 0.6226
+anchor_right = 0.962
+anchor_bottom = 0.6790
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"DiaryTabInvisible"
 
 [node name="CloseButton" type="Button" parent="Aspect/Frame"]
 unique_name_in_owner = true
 layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.872
 anchor_top = 0.86
 anchor_right = 0.975
 anchor_bottom = 0.945
 grow_horizontal = 2
 grow_vertical = 2
+tooltip_text = "Close the log (Esc)"
 mouse_default_cursor_shape = 2
-theme_type_variation = &"DiaryTab"
-text = "FECHAR"
-tooltip_text = "Fechar o diário (Esc)"
+theme_type_variation = &"DiaryClose"
+text = "CLOSE"

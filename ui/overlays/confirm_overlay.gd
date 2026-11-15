@@ -18,7 +18,7 @@ func _ready() -> void:
 	_cancel.pressed.connect(_finish.bind(false))
 
 
-func ask(message: String, ok_text := "Confirmar", cancel_text := "Cancelar") -> bool:
+func ask(message: String, ok_text := "Confirm", cancel_text := "Cancel") -> bool:
 	_message.text = message
 	_ok.text = ok_text
 	_cancel.text = cancel_text

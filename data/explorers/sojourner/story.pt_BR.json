@@ -1,0 +1,64 @@
+{
+  "arrival": [
+    {
+      "who": "hero",
+      "emo": "curious",
+      "text": "Look at that tiny rover! I almost missed it between the rocks. Let's take a scan."
+    }
+  ],
+  "scan": [
+    {
+      "who": "explorer",
+      "emo": "",
+      "text": "I'm Sojourner. I arrived on Mars with the Pathfinder lander in 1997."
+    },
+    {
+      "who": "explorer",
+      "emo": "",
+      "text": "I was the first rover to explore Mars. My six wheels carried me from rock to rock so I could take pictures and study what they were made of."
+    },
+    {
+      "who": "explorer",
+      "emo": "",
+      "text": "I stayed near Pathfinder. It passed my findings on to Earth."
+    },
+    {
+      "who": "explorer",
+      "emo": "",
+      "text": "My mission was meant to last just seven days. I kept exploring for almost three months."
+    },
+    {
+      "who": "explorer",
+      "emo": "",
+      "text": "Then Earth lost contact with Pathfinder, and my team could no longer receive my reports."
+    },
+    {
+      "who": "explorer",
+      "emo": "",
+      "text": "What they learned from my journey helped them prepare for other rovers to explore Mars."
+    }
+  ],
+  "reaction": [
+    {
+      "who": "hero",
+      "emo": "warm",
+      "text": "So small, and it helped the next rovers get started. I'm glad I spotted it."
+    }
+  ],
+  "wrap_up": [
+    {
+      "who": "hero",
+      "emo": "warm",
+      "text": "I've saved your story, little rover. Time to find the next one."
+    }
+  ],
+  "reward_lines": [],
+  "sources": {
+    "nasa_sojourner": {
+      "title": "NASA Science — Mars Pathfinder / Sojourner",
+      "url": "https://science.nasa.gov/mission/mars-pathfinder/",
+      "checked_on": "",
+      "checked_by": ""
+    }
+  }
+}

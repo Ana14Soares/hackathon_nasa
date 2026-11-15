@@ -1,54 +1,81 @@
 class_name Interactable
 extends Button
 ## Componente único dos itens clicáveis (scan, diário, radar, cartão).
-## set_state(enabled, pulsing) liga um pulso em loop; com "reduzir movimento"
-## o pulso vira um contorno fixo.
+## set_state(enabled, pulsing) liga a DICA de "clique aqui": o botão fica com o
+## visual de "pressed" (a arte pressionada) enquanto a dica estiver ativa. Se o
+## botão não tiver visual de pressed (só ícone), usa um contorno fixo.
+## O tamanho, a escala e a rotação definidos no editor são respeitados como estão.
 
 signal activated(item_id: StringName)
 
 @export var item_id: StringName
+## Visual do botão enquanto estiver BLOQUEADO (set_locked(true)), no lugar do
+## visual de desabilitado. Ex.: o radar vazio até a Placa Pioneer ser descoberta.
+@export var locked_style: StyleBox
 
-var _pulsing := false
-var _tween: Tween
+var _hinting := false
+var _locked := false
+var _scene_disabled: StyleBox          # estilo 'disabled' definido na cena (se houver)
+var _locked_applied := false
 var _base_variation: StringName
+var _hint_overrode_normal := false
+var _had_normal_override := false
+var _saved_normal: StyleBox
 
 
 func _ready() -> void:
 	_base_variation = theme_type_variation
+	if has_theme_stylebox_override(&"disabled"):
+		_scene_disabled = get_theme_stylebox(&"disabled")
 	pressed.connect(func() -> void: activated.emit(item_id))
-	resized.connect(_center_pivot)
 	Settings.changed.connect(_refresh)
-	_center_pivot()
 
 
-func set_state(enabled: bool, pulsing: bool) -> void:
+func set_state(enabled: bool, hint: bool) -> void:
 	disabled = not enabled
 	focus_mode = Control.FOCUS_ALL if enabled else Control.FOCUS_NONE
 	if not enabled and has_focus():
 		release_focus()
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if enabled else Control.CURSOR_ARROW
-	_pulsing = pulsing and enabled
+	_hinting = hint and enabled
+	_refresh()
+
+
+func set_locked(locked: bool) -> void:
+	_locked = locked
 	_refresh()
 
 
 func _refresh() -> void:
-	if _tween:
-		_tween.kill()
-		_tween = null
-	scale = Vector2.ONE
-	self_modulate = Color.WHITE
+	# Bloqueado: troca o visual de desabilitado pelo visual "vazio".
+	if _locked_applied:
+		if _scene_disabled:
+			add_theme_stylebox_override(&"disabled", _scene_disabled)
+		else:
+			remove_theme_stylebox_override(&"disabled")
+		_locked_applied = false
+	if _locked and locked_style:
+		add_theme_stylebox_override(&"disabled", locked_style)
+		_locked_applied = true
+	# Desfaz a dica anterior.
+	if _hint_overrode_normal:
+		if _had_normal_override:
+			add_theme_stylebox_override(&"normal", _saved_normal)
+		else:
+			remove_theme_stylebox_override(&"normal")
+		_hint_overrode_normal = false
 	theme_type_variation = _base_variation
-	if not _pulsing:
+	if not _hinting:
 		return
-	if Settings.reduce_motion:
-		theme_type_variation = &"InteractablePulse"
+	var pressed_style := get_theme_stylebox(&"pressed")
+	if pressed_style == null or pressed_style is StyleBoxEmpty \
+			or (pressed_style is StyleBoxTexture and pressed_style.texture == null):
+		# Sem visual de pressed (botão só de ícone): contorno fixo "<Variação>Pulse".
+		var v := StringName(String(_base_variation) + "Pulse")
+		theme_type_variation = v if v in Settings.theme.get_type_list() else &"InteractablePulse"
 		return
-	_tween = create_tween().set_loops()
-	_tween.tween_property(self, "scale", Vector2.ONE * 1.08, 0.55).set_trans(Tween.TRANS_SINE)
-	_tween.parallel().tween_property(self, "self_modulate", Color(1.35, 1.35, 1.35), 0.55)
-	_tween.tween_property(self, "scale", Vector2.ONE, 0.55).set_trans(Tween.TRANS_SINE)
-	_tween.parallel().tween_property(self, "self_modulate", Color.WHITE, 0.55)
-
-
-func _center_pivot() -> void:
-	pivot_offset = size / 2.0
+	# Dica = o botão aparece no estado pressed (arte pressionada).
+	_had_normal_override = has_theme_stylebox_override(&"normal")
+	_saved_normal = get_theme_stylebox(&"normal")
+	add_theme_stylebox_override(&"normal", pressed_style)
+	_hint_overrode_normal = true

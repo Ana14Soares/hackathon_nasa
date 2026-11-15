@@ -1,16 +1,52 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://b8lu3aufdgud3"]
 
-[ext_resource type="Script" path="res://scenes/ship/ship_interior.gd" id="1_ship"]
-[ext_resource type="Script" path="res://ui/common/starfield.gd" id="2_stars"]
-[ext_resource type="Script" path="res://scenes/ship/cockpit_drawing.gd" id="3_cockpit"]
+[ext_resource type="Script" uid="uid://d4ggwlxprm76d" path="res://scenes/ship/ship_interior.gd" id="1_ship"]
+[ext_resource type="Script" uid="uid://hdevqd36bkr5" path="res://ui/common/starfield.gd" id="2_stars"]
+[ext_resource type="Texture2D" uid="uid://cxlac3saope3g" path="res://assets/ui/icon_diary_default.svg" id="3_gd33v"]
+[ext_resource type="Texture2D" uid="uid://busytghxysopy" path="res://scenes/ship/ship.svg" id="4_cfptk"]
 [ext_resource type="PackedScene" path="res://ui/interactable/interactable.tscn" id="4_inter"]
-[ext_resource type="Texture2D" path="res://assets/ui/icon_id.svg" id="5_id"]
-[ext_resource type="Texture2D" path="res://assets/ui/icon_diary.svg" id="6_diary"]
-[ext_resource type="Texture2D" path="res://assets/ui/icon_radar.svg" id="7_radar"]
-[ext_resource type="Texture2D" path="res://assets/ui/icon_scan.svg" id="8_scan"]
-[ext_resource type="Script" path="res://ui/cute_face/cute_face.gd" id="9_face"]
+[ext_resource type="Texture2D" uid="uid://d06lm05tftdx3" path="res://assets/ui/icon_cracha.svg" id="6_cfptk"]
+[ext_resource type="Texture2D" uid="uid://b4rq8n70rojqn" path="res://assets/ui/scanner_default.svg" id="9_gd33v"]
+[ext_resource type="Texture2D" uid="uid://dg18px6k2wwji" path="res://assets/ui/scanner_pressed.svg" id="10_tehdu"]
+[ext_resource type="Texture2D" uid="uid://xi0sii1sawrp" path="res://assets/ui/radar_default.svg" id="12_rdef"]
+[ext_resource type="Texture2D" uid="uid://b2f145mi1f20r" path="res://assets/ui/radar_pressed.svg" id="13_rpress"]
+[ext_resource type="Texture2D" uid="uid://d4f2watoiukx7" path="res://assets/ui/radar_null.svg" id="14_rnull"]
+[ext_resource type="Texture2D" path="res://assets/ui/scanner_animation1.svg" id="15_sa"]
+[ext_resource type="Script" path="res://ui/scanner_anim/scanner_animation.gd" id="16_sas"]
+[ext_resource type="Texture2D" path="res://assets/ui/scanner_animation2.svg" id="17_sb"]
 
-[node name="ShipInterior" type="Control"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cfptk"]
+texture = ExtResource("3_gd33v")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gd33v"]
+load_path = "res://.godot/imported/icon_diary_pressed.svg-a0a04bd3d73ede0b56c21679dfb0c4b8.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gd33v"]
+texture = SubResource("CompressedTexture2D_gd33v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rdef"]
+texture = ExtResource("12_rdef")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rpress"]
+texture = ExtResource("13_rpress")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rnull"]
+texture = ExtResource("14_rnull")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qgo02"]
+texture = ExtResource("9_gd33v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vovv2"]
+texture = ExtResource("10_tehdu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hover"]
+texture = ExtResource("9_gd33v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_off"]
+texture = ExtResource("9_gd33v")
+modulate_color = Color(1, 1, 1, 0.45)
+
+[node name="ShipInterior" type="Control" unique_id=639056640]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +56,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_ship")
 
-[node name="Window" type="Control" parent="."]
+[node name="Window" type="Control" parent="." unique_id=833385149]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 1
@@ -31,7 +67,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Starfield" type="Control" parent="Window"]
+[node name="Starfield" type="Control" parent="Window" unique_id=629828843]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +77,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_stars")
 
-[node name="Backdrop" type="TextureRect" parent="Window"]
+[node name="Backdrop" type="TextureRect" parent="Window" unique_id=1486971756]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -53,7 +89,7 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 6
 
-[node name="ExplorerSprite" type="TextureRect" parent="Window"]
+[node name="ExplorerSprite" type="TextureRect" parent="Window" unique_id=289848214]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 400.0
@@ -62,49 +98,34 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ExplorerFace" type="Control" parent="Window/ExplorerSprite"]
+[node name="ScannerAnim" type="TextureRect" parent="Window"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
+offset_left = 266.0
+offset_top = -32.0
+offset_right = 1631.0
+offset_bottom = 791.0
 mouse_filter = 2
-script = ExtResource("9_face")
+texture = ExtResource("15_sa")
+expand_mode = 1
+script = ExtResource("16_sas")
+frame_a = ExtResource("15_sa")
+frame_b = ExtResource("17_sb")
 
-[node name="Cockpit" type="Control" parent="."]
+[node name="Cockpit" type="TextureRect" parent="." unique_id=23059509]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("3_cockpit")
+texture = ExtResource("4_cfptk")
 
-[node name="ArtifactShelf" type="HBoxContainer" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 0.15
-anchor_top = 0.74
-anchor_right = 0.28
-anchor_bottom = 0.74
-offset_bottom = 84.0
-mouse_filter = 2
-theme_override_constants/separation = 12
-
-[node name="IdCard" parent="." instance=ExtResource("4_inter")]
-unique_name_in_owner = true
-layout_mode = 1
-offset_left = 24.0
-offset_top = 24.0
-offset_right = 300.0
-offset_bottom = 96.0
-theme_type_variation = &"GhostButton"
-text = "Cartão da Lyra"
-icon = ExtResource("5_id")
-icon_alignment = 0
-vertical_icon_alignment = 1
-item_id = &"id_card"
-
-[node name="DiaryObject" parent="." instance=ExtResource("4_inter")]
+[node name="DiaryObject" parent="." unique_id=1299984029 instance=ExtResource("4_inter")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
@@ -112,18 +133,20 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -390.0
-offset_top = -240.0
-offset_right = -170.0
-offset_bottom = -40.0
+offset_left = -1247.0
+offset_top = -1339.0
+offset_right = -419.0
+offset_bottom = -66.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Diário
-de bordo"
-icon = ExtResource("6_diary")
+theme_type_variation = &"IconOnly"
+theme_override_styles/normal = SubResource("StyleBoxTexture_cfptk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gd33v")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cfptk")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_cfptk")
 item_id = &"diary"
 
-[node name="RadarScreen" parent="." instance=ExtResource("4_inter")]
+[node name="RadarScreen" parent="." unique_id=625779472 instance=ExtResource("4_inter")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
@@ -131,31 +154,68 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -140.0
-offset_top = -240.0
-offset_right = 140.0
-offset_bottom = -40.0
+offset_left = -353.0
+offset_top = -331.0
+offset_right = 413.0
+offset_bottom = -101.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_type_variation = &"RadarMarker"
-text = "Radar solar"
-icon = ExtResource("7_radar")
+rotation = -0.0034906585
+theme_type_variation = &"IconOnly"
+theme_override_styles/normal = SubResource("StyleBoxTexture_rdef")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_rpress")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rdef")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_rdef")
 item_id = &"radar"
+locked_style = SubResource("StyleBoxTexture_rnull")
 
-[node name="ScanButton" parent="." instance=ExtResource("4_inter")]
+[node name="ScanButton" parent="." unique_id=856369433 instance=ExtResource("4_inter")]
 unique_name_in_owner = true
 layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.8
 anchor_top = 1.0
 anchor_right = 0.8
 anchor_bottom = 1.0
-offset_left = -120.0
-offset_top = -220.0
-offset_right = 120.0
-offset_bottom = -70.0
+offset_left = -177.0
+offset_top = -1246.0
+offset_right = 27.0
+offset_bottom = -1059.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_type_variation = &"ScanButton"
-text = "SCAN"
-icon = ExtResource("8_scan")
+rotation = 0.06981317
+scale = Vector2(6, 6)
+theme_type_variation = &"IconOnly"
+theme_override_styles/normal = SubResource("StyleBoxTexture_qgo02")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vovv2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hover")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_off")
 item_id = &"scan"
+
+[node name="IdCard" parent="." unique_id=1041487799 instance=ExtResource("4_inter")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 1180.0
+offset_top = -333.0
+offset_right = 1880.0
+offset_bottom = 667.0
+theme_type_variation = &"IconOnly"
+icon = ExtResource("6_cfptk")
+vertical_icon_alignment = 1
+expand_icon = true
+item_id = &"id_card"
+
+[node name="ArtifactShelf" type="HBoxContainer" parent="." unique_id=1389374715]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.74
+anchor_right = 0.28
+anchor_bottom = 0.74
+offset_left = -194.0
+offset_top = -446.2
+offset_right = -112.599976
+offset_bottom = -212.20001
+mouse_filter = 2
+theme_override_constants/separation = 12

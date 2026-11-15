@@ -39,7 +39,7 @@ static func run() -> Dictionary:
 				errors.append("%s: imagem '%s' sem crédito" % [tag, img.key])
 			if img.source_url.strip_edges() == "":
 				errors.append("%s: imagem '%s' sem source_url" % [tag, img.key])
-			if img.credit.begins_with("Ilustração provisória"):
+			if img.credit.begins_with("Placeholder"):
 				warnings.append("%s: imagem '%s' ainda é provisória" % [tag, img.key])
 
 		var path := e.resource_path.get_base_dir() + "/story.pt_BR.json"
@@ -48,17 +48,15 @@ static func run() -> Dictionary:
 			errors.append("%s: JSON ausente ou inválido (%s)" % [tag, path])
 			continue
 		var story := StoryData.from_dict(parsed)
-		for list in [story.arrival, story.scan, story.wrap_up, story.reward_lines]:
+		for list in [story.arrival, story.scan, story.reaction, story.wrap_up, story.reward_lines]:
 			for line in list:
 				if line.text.strip_edges() == "":
 					errors.append("%s: fala com texto vazio" % tag)
-				if line.image != &"" and not line.image in keys:
-					errors.append("%s: fala cita imagem inexistente '%s'" % [tag, line.image])
 		for k in story.image_keys:
 			if not k in keys:
 				errors.append("%s: diário cita imagem inexistente '%s'" % [tag, k])
-		if story.report.is_empty():
-			warnings.append("%s: diário sem relatório de missão (report)" % tag)
+		if e.diary_page == null:
+			warnings.append("%s: sem arte de página do diário (diary_page)" % tag)
 		for f in story.report + story.facts:
 			var sid := str(f.get("source", ""))
 			if sid == "" or not story.sources.has(sid):

@@ -5,15 +5,20 @@ extends Control
 
 enum Phase { ARRIVAL, AWAIT_SCAN, SCANNING, AWAIT_DIARY, WRAP_UP, AWAIT_RADAR }
 
-## Quais itens ficam clicáveis e pulsando em cada fase.
+## Quais itens ficam clicáveis ("enabled") e quais ficam com o visual de pressed
+## ("pulse" = a dica de "clique aqui", mostrada como o estado pressed) em cada fase.
+## • O diário fica ativo e com o pressed o tempo todo depois do scan.
+## • O radar só abre depois do scan E do diário (fase AWAIT_RADAR), e ainda
+##   depende da flag radar_unlocked (Placa Pioneer).
 const RULES := {
 	Phase.ARRIVAL:     {"enabled": [], "pulse": []},
 	Phase.AWAIT_SCAN:  {"enabled": [&"scan", &"id_card"], "pulse": [&"scan"]},
 	Phase.SCANNING:    {"enabled": [], "pulse": []},
 	Phase.AWAIT_DIARY: {"enabled": [&"diary", &"id_card"], "pulse": [&"diary"]},
-	Phase.WRAP_UP:     {"enabled": [], "pulse": []},
-	Phase.AWAIT_RADAR: {"enabled": [&"diary", &"id_card", &"radar"], "pulse": [&"radar"]},
+	Phase.WRAP_UP:     {"enabled": [&"diary"], "pulse": [&"diary"]},
+	Phase.AWAIT_RADAR: {"enabled": [&"diary", &"id_card", &"radar"], "pulse": [&"diary", &"radar"]},
 }
+const ENDING_JSON := "res://data/ending/ending.json"
 const ITEMS: Array[StringName] = [&"scan", &"diary", &"radar", &"id_card"]
 
 @onready var ship: ShipInterior = %ShipInterior
@@ -40,9 +45,6 @@ func _ready() -> void:
 	ship.item_activated.connect(_on_item_activated)
 	diary.closed.connect(_on_diary_closed)
 	dialogue.talking_changed.connect(_on_talking_changed)
-	# Já escaneado (retomada ou revisita): o equipamento continua personificado.
-	var st := GameState.get_status(data.id)
-	ship.set_personified(st == GameState.Status.SCANNED or st == GameState.Status.COMPLETED, false)
 	AudioManager.play_music(&"encounter")
 	phase = Phase.ARRIVAL
 	_apply_rules()
@@ -70,8 +72,10 @@ func _enter_phase(p: Phase) -> void:
 			await dialogue.play(story.arrival)
 			_enter_phase(Phase.AWAIT_SCAN)
 		Phase.SCANNING:
-			await scan_overlay.run(story.scan, data, dialogue)   # overlay + falas + imagens
+			await scan_overlay.run(story.scan, dialogue)   # varredura + falas
+			ship.set_scanner_shown(false)                   # terminou de falar: o scanner sai do vidro
 			GameState.set_status(data.id, GameState.Status.SCANNED)
+			await dialogue.play(story.reaction)             # a Lyra reage; depois o diário pulsa
 			_enter_phase(Phase.AWAIT_DIARY)
 		Phase.WRAP_UP:
 			await _wrap_up()
@@ -86,6 +90,8 @@ func _apply_rules() -> void:
 		if item == &"radar":
 			enabled = enabled and GameState.get_flag(&"radar_unlocked")
 		ship.set_item_state(item, enabled, enabled and item in rule["pulse"])
+	# Radar "vazio" até a Placa Pioneer ser descoberta; depois usa default/pressed.
+	ship.set_item_locked(&"radar", not GameState.get_flag(&"radar_unlocked"))
 
 
 func _on_item_activated(item: StringName) -> void:
@@ -101,12 +107,13 @@ func _on_item_activated(item: StringName) -> void:
 			SceneRouter.go_to(&"radar", &"radar")
 
 
-## Quando o equipamento se apresenta no scan, ganha um rostinho e "fala" o balão.
+## Enquanto o equipamento fala (depois da varredura), o scanner aparece no vidro e anima.
+## Quando o scan termina, ele sai (ver _enter_phase → SCANNING).
 func _on_talking_changed(speaker: ExplorerData, talking: bool) -> void:
 	if speaker != data:
 		return
-	ship.set_personified(true)
-	ship.set_face_talking(talking)
+	ship.set_scanner_shown(true)
+	ship.set_scanner_talking(talking)
 
 
 func _on_diary_closed() -> void:
@@ -115,7 +122,15 @@ func _on_diary_closed() -> void:
 
 
 func _wrap_up() -> void:
-	await dialogue.play(story.wrap_up)
+	# Último equipamento: no lugar da fala de "seguir viagem" vem a transição para a Terra.
+	var is_last := true
+	for id in ContentDB.all_ids():
+		if id != data.id and GameState.get_status(id) != GameState.Status.COMPLETED:
+			is_last = false
+	if is_last:
+		await dialogue.play(DialogueLine.list_from(ContentDB.load_json(ENDING_JSON).get("transition", [])))
+	else:
+		await dialogue.play(story.wrap_up)
 	if data.reward:
 		var first_time := not (data.reward.id in GameState.artifacts)
 		GameState.grant_reward(data.reward)           # idempotente: artefato + flags
@@ -126,6 +141,6 @@ func _wrap_up() -> void:
 		await dialogue.play(story.reward_lines)
 	GameState.set_status(data.id, GameState.Status.COMPLETED)
 	if GameState.is_all_completed():
-		SceneRouter.go_to(&"ending")
+		SceneRouter.go_to(&"ending", &"warp")          # viagem até a Terra, sem texto na tela
 	else:
 		_enter_phase(Phase.AWAIT_RADAR)

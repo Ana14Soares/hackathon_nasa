@@ -1,44 +1,37 @@
 class_name DiaryBook
 extends Overlay
-## Diário de bordo no formato "relatório de missão":
-##   • Esquerda: MISSION REPORT / EQUIPMENT 00N, imagem do equipamento (com o
-##     rostinho), nome e tabela TYPE / LAUNCH / TARGET / OBJECTIVE.
-##   • Direita: NOTES — o texto pessoal da Lyra em letra manuscrita.
-##   • Abas à direita = coleção: uma aba por equipamento do registro. As coletadas
-##     mostram a miniatura e abrem as páginas; as que faltam ficam apagadas.
-## Cada coluna rola sozinha, então o texto grande nunca corta.
+## Diário de bordo. Os textos e o layout de cada página vêm prontos na arte
+## (ExplorerData.diary_page); este script só decide QUAL página mostrar:
+##   • Uma aba por equipamento, na ordem do registro.
+##   • Aba ativa  = equipamento já coletado (status SCANNED ou COMPLETED).
+##   • Aba apagada = ainda não encontrado.
+## O que está coletado vem do GameState, que já é gravado no save a cada
+## checkpoint, então o diário reaparece igual ao continuar o jogo.
 
-@onready var _report_header: Label = %ReportHeader
-@onready var _image_box: PanelContainer = %ImageBox
-@onready var _image: TextureRect = %Image
-@onready var _face: CuteFace = %ImageFace
-@onready var _name: Label = %NameLabel
-@onready var _table: VBoxContainer = %Table
-@onready var _footer: VBoxContainer = %Footer
-@onready var _notes: RichTextLabel = %Notes
-@onready var _left_scroll: ScrollContainer = %LeftScroll
-@onready var _right_scroll: ScrollContainer = %RightScroll
-@onready var _number: Label = %Number
-@onready var _tab_list: VBoxContainer = %TabList
+@onready var _aspect: AspectRatioContainer = %Aspect
+@onready var _page: TextureRect = %Page
+@onready var _missing: PanelContainer = %Missing
+@onready var _missing_text: Label = %MissingText
+@onready var _tabs: Control = %Tabs
 @onready var _close_btn: Button = %CloseButton
 
 var _selected: StringName = &""
-var _current: ExplorerData
-var _group := ButtonGroup.new()
 
 
 func _ready() -> void:
 	super._ready()
 	_close_btn.pressed.connect(close)
-	_image.resized.connect(_place_face)
+	# Abas = botões invisíveis da cena (Tab1…TabN), na ordem do registro. Arraste-os no editor.
+	var tabs := _tabs.get_children()
+	for i in tabs.size():
+		(tabs[i] as Button).pressed.connect(_on_tab_pressed.bind(i))
 	Settings.changed.connect(_on_settings_changed)
 
 
-## Abre o diário no equipamento informado (usado no encontro).
-func open(data: ExplorerData, story: StoryData) -> void:
+## Abre o diário na página do equipamento informado (usado no encontro).
+func open(data: ExplorerData, _story: StoryData = null) -> void:
 	_selected = data.id
-	_build_tabs()
-	_show_pages(data, story)
+	_refresh()
 	AudioManager.play_sfx(&"diary_open")
 	show_overlay()
 
@@ -52,163 +45,61 @@ func open_collection() -> void:
 		_selected = ids[0]
 	else:
 		_selected = &""
-	_build_tabs()
-	if _selected != &"":
-		_show_pages(ContentDB.get_explorer(_selected), ContentDB.get_story(_selected))
-	else:
-		_show_empty()
+	_refresh()
 	AudioManager.play_sfx(&"diary_open")
 	show_overlay()
 
 
-# --- Abas (coleção) -----------------------------------------------------------
+func _refresh() -> void:
+	_build_tabs()
+	_show_page(ContentDB.get_explorer(_selected) if _selected != &"" else null)
+
+
+# --- Abas ---------------------------------------------------------------------
 
 func _build_tabs() -> void:
-	_clear(_tab_list)
-	var collected := GameState.collected_ids()
 	var all := ContentDB.all_ids()
-	for i in all.size():
-		var id := all[i]
-		var b := Button.new()
-		b.theme_type_variation = &"DiaryTab"
-		b.toggle_mode = true
-		b.button_group = _group
-		b.expand_icon = true
-		b.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		b.custom_minimum_size = Vector2(0, 50 * clampf(Settings.font_scale(), 1.0, 1.3))
-		if id in collected:
-			var data := ContentDB.get_explorer(id)
-			b.icon = data.sprite
-			b.tooltip_text = "%s · %s" % [_num(i), data.display_name]
-			b.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-			b.button_pressed = id == _selected
-			b.pressed.connect(_on_tab_pressed.bind(id))
-		else:
-			b.disabled = true
-			b.tooltip_text = "%s · ainda não encontrado" % _num(i)
-			b.focus_mode = Control.FOCUS_NONE
-		_tab_list.add_child(b)
+	var tabs := _tabs.get_children()
+	for i in tabs.size():
+		var b := tabs[i] as Button
+		b.visible = i < all.size()
+		if i >= all.size():
+			continue
+		var found := GameState.is_collected(all[i])
+		b.disabled = not found
+		# Já desbloqueado: o número aparece por cima da aba (a aba aberta já traz o número na arte).
+		b.text = ("%03d" % (i + 1)) if found and all[i] != _selected else ""
+		b.focus_mode = Control.FOCUS_ALL if found else Control.FOCUS_NONE
+		b.tooltip_text = ("%03d · %s" % [i + 1, ContentDB.get_explorer(all[i]).display_name]) if found \
+			else ("%03d · not found yet" % (i + 1))
 
 
-func _on_tab_pressed(id: StringName) -> void:
-	if id == _selected:
+func _on_tab_pressed(index: int) -> void:
+	var all := ContentDB.all_ids()
+	if index >= all.size() or not GameState.is_collected(all[index]) or all[index] == _selected:
 		return
-	_selected = id
-	_show_pages(ContentDB.get_explorer(id), ContentDB.get_story(id))
+	_selected = all[index]
+	_build_tabs()
+	_show_page(ContentDB.get_explorer(_selected))
 
 
-# --- Páginas ------------------------------------------------------------------
+# --- Página -------------------------------------------------------------------
 
-func _show_pages(data: ExplorerData, story: StoryData) -> void:
-	_current = data
-	_left_scroll.scroll_vertical = 0
-	_right_scroll.scroll_vertical = 0
-	var n := _num(ContentDB.all_ids().find(data.id))
-	_number.text = n
-	_report_header.text = "MISSION REPORT / EQUIPMENT %s" % n
-	_image_box.visible = true
-	_image.texture = data.sprite
-	_face.visible = GameState.is_collected(data.id)
-	_place_face()
-	_name.text = data.display_name.to_upper()
-
-	_clear(_table)
-	for i in story.report.size():
-		var r: Dictionary = story.report[i]
-		_add_row(str(r.get("label", "")), str(r.get("value", "")), i == story.report.size() - 1)
-
-	_clear(_footer)
-	var sources: Array[String] = []
-	for sid in story.cited_source_ids():
-		var s: Dictionary = story.sources.get(sid, {})
-		sources.append(str(s.get("title", sid)))
-	if not sources.is_empty():
-		_add_small(_footer, "SOURCE: " + " · ".join(sources))
-	if data.reward and data.reward.id in GameState.artifacts:
-		var hb := HBoxContainer.new()
-		hb.add_theme_constant_override(&"separation", 10)
-		var tex := TextureRect.new()
-		tex.texture = data.reward.texture
-		tex.custom_minimum_size = Vector2(72, 46)
-		tex.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		tex.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		hb.add_child(tex)
-		var l := _add_small(hb, "ARTIFACT: " + data.reward.display_name.to_upper())
-		l.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		_footer.add_child(hb)
-
-	_notes.text = _paragraphs(story.personal)
-
-
-func _show_empty() -> void:
-	_current = null
-	_number.text = "---"
-	_report_header.text = "MISSION REPORT / EQUIPMENT ---"
-	_image_box.visible = false
-	_name.text = "SEM REGISTROS"
-	_clear(_table)
-	_clear(_footer)
-	_notes.text = "Ainda não registrei nenhum explorador. Use o scanner para conhecer o primeiro!"
-
-
-func _add_row(key: String, value: String, last: bool) -> void:
-	var row := PanelContainer.new()
-	row.theme_type_variation = &"DiaryRowLast" if last else &"DiaryRow"
-	var hb := HBoxContainer.new()
-	hb.add_theme_constant_override(&"separation", 16)
-	var k := Label.new()
-	k.text = key
-	k.theme_type_variation = &"DiaryMonoSmall"
-	k.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	k.size_flags_stretch_ratio = 0.62
-	k.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	k.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	var v := Label.new()
-	v.text = value
-	v.theme_type_variation = &"DiaryValue"
-	v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	v.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	hb.add_child(k)
-	hb.add_child(v)
-	row.add_child(hb)
-	_table.add_child(row)
-
-
-func _add_small(parent: Control, text: String) -> Label:
-	var l := Label.new()
-	l.text = text
-	l.theme_type_variation = &"DiaryMonoSmall"
-	l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	l.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	parent.add_child(l)
-	return l
-
-
-## Linha em branco entre parágrafos, como no mockup.
-func _paragraphs(text: String) -> String:
-	return text.replace("\n\n", "\n").replace("\n", "\n\n")
-
-
-## O rosto acompanha o sprite desenhado (quadrado centralizado na caixa).
-func _place_face() -> void:
-	if _current == null:
-		return
-	var s := minf(_image.size.x, _image.size.y)
-	_face.place(_current.face_position, _current.face_size, Vector2(s, s))
-	_face.position += (_image.size - Vector2(s, s)) / 2.0
+func _show_page(data: ExplorerData) -> void:
+	var tex: Texture2D = data.diary_page if data else null
+	_page.texture = tex
+	_page.visible = tex != null
+	_missing.visible = tex == null
+	if tex:
+		# A moldura segue a proporção da arte da página.
+		_aspect.ratio = tex.get_size().x / tex.get_size().y
+	elif data:
+		_missing_text.text = "The log page for %s has not been created yet.\nAssign the art to \"Diary Page\" in the file %s." \
+			% [data.display_name, data.resource_path.get_file()]
+	else:
+		_missing_text.text = "No equipment recorded yet.\nUse the scanner to meet the first one!"
 
 
 func _on_settings_changed() -> void:
-	if visible and _selected != &"":
+	if visible:
 		_build_tabs()
-		_image_box.custom_minimum_size.y = 230 * clampf(Settings.font_scale(), 1.0, 1.2)
-
-
-static func _num(i: int) -> String:
-	return "%03d" % (i + 1)
-
-
-func _clear(n: Node) -> void:
-	for c in n.get_children():
-		n.remove_child(c)
-		c.queue_free()

@@ -1,34 +1,37 @@
-[gd_resource type="Resource" script_class="ExplorerData" format=3]
+[gd_resource type="Resource" script_class="ExplorerData" format=3 uid="uid://dj2psyt1agbji"]
 
-[ext_resource type="Script" path="res://data/types/explorer_data.gd" id="1_ed"]
-[ext_resource type="Script" path="res://data/types/image_ref.gd" id="2_ir"]
-[ext_resource type="Texture2D" path="res://data/explorers/pioneer_10/img/pioneer_10.svg" id="3_sp"]
-[ext_resource type="Texture2D" path="res://assets/backdrops/deep_space.svg" id="4_bd"]
-[ext_resource type="Script" path="res://data/types/reward_data.gd" id="6_rw"]
-[ext_resource type="Texture2D" path="res://data/explorers/pioneer_10/img/plaque.svg" id="7_pl"]
+[ext_resource type="Script" uid="uid://d1nbxt4kbefxi" path="res://data/types/explorer_data.gd" id="1_ed"]
+[ext_resource type="Texture2D" uid="uid://cv7cvshmc53yv" path="res://data/explorers/pioneer_10/img/001.png" id="1_i2g70"]
+[ext_resource type="Script" uid="uid://buaewdso8p7hl" path="res://data/types/image_ref.gd" id="2_ir"]
+[ext_resource type="Texture2D" uid="uid://m11w6n5yk2l6" path="res://data/explorers/pioneer_10/img/pioneer_10.svg" id="3_sp"]
+[ext_resource type="Texture2D" uid="uid://c416c4q3o2m18" path="res://assets/backdrops/deep_space.svg" id="4_bd"]
+[ext_resource type="Script" uid="uid://b1f2a6xeay2xm" path="res://data/types/reward_data.gd" id="6_rw"]
+[ext_resource type="Texture2D" uid="uid://bojxkyw4u84fc" path="res://data/explorers/pioneer_10/img/placa_default.svg" id="6_umepn"]
+[ext_resource type="Texture2D" uid="uid://bl4a2kxqppmqq" path="res://data/explorers/pioneer_10/img/Pioneer 10.svg" id="8_umepn"]
+[ext_resource type="Texture2D" uid="uid://b3dngass8f8yb" path="res://data/explorers/pioneer_10/img/Cenário-voando.svg" id="9_i2g70"]
 
 [sub_resource type="Resource" id="Resource_craft"]
 script = ExtResource("2_ir")
 key = &"craft"
 texture = ExtResource("3_sp")
-caption = "O Pioneer 10, com sua grande antena voltada para a Terra."
-credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+caption = "Pioneer 10 with its large antenna pointed at Earth."
+credit = "Placeholder game illustration — replace with the official NASA image"
 source_url = "https://science.nasa.gov/mission/pioneer-10/"
 
 [sub_resource type="Resource" id="Resource_place"]
 script = ExtResource("2_ir")
 key = &"place"
 texture = ExtResource("4_bd")
-caption = "Júpiter, o gigante que o Pioneer 10 visitou em 1973."
-credit = "Ilustração provisória do jogo — substituir pela imagem oficial da NASA"
+caption = "Jupiter, the giant Pioneer 10 visited in 1973."
+credit = "Placeholder game illustration — replace with the official NASA image"
 source_url = "https://science.nasa.gov/mission/pioneer-10/"
 
 [sub_resource type="Resource" id="Resource_reward"]
 script = ExtResource("6_rw")
 id = &"pioneer_plaque"
-display_name = "Placa Pioneer"
-description = "Lembrança de um novo amigo. Tem um mapa que mostra onde fica o Sol."
-texture = ExtResource("7_pl")
+display_name = "Pioneer Plaque (replica)"
+description = "A copy of the plaque Pioneer 10 carries: a message for anyone who finds it."
+texture = ExtResource("6_umepn")
 shelf_slot = &"plaque"
 unlocks = Array[StringName]([&"radar_unlocked"])
 
@@ -36,16 +39,12 @@ unlocks = Array[StringName]([&"radar_unlocked"])
 script = ExtResource("1_ed")
 id = &"pioneer_10"
 display_name = "Pioneer 10"
-subtitle = "Sonda interplanetária · 1972"
-region = "deep_space"
-window_backdrop = ExtResource("4_bd")
-sprite = ExtResource("3_sp")
-view_position = Vector2(800, 400)
-view_scale = 1.0
-idle_motion = true
-face_position = Vector2(0.5, 0.37)
-face_size = 0.34
+subtitle = "Interplanetary probe · 1972"
+window_backdrop = ExtResource("9_i2g70")
+sprite = ExtResource("8_umepn")
+view_position = Vector2(1000, 410)
+view_scale = 0.4
+diary_page = ExtResource("1_i2g70")
 radar_position = Vector2(337, -283)
-unlock_after = Array[StringName]([])
 images = Array[ExtResource("2_ir")]([SubResource("Resource_craft"), SubResource("Resource_place")])
 reward = SubResource("Resource_reward")

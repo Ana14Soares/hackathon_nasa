@@ -73,25 +73,25 @@ func _place_markers() -> void:
 
 func _show_default_info() -> void:
 	if ContentDB.available_ids().is_empty():
-		_info_title.text = "Todos lembrados"
-		_info_text.text = "Você encontrou todos os exploradores. Abra o diário para reler as histórias."
+		_info_title.text = "All remembered"
+		_info_text.text = "You found every explorer. Open the log to read their stories again."
 	else:
-		_info_title.text = "Radar solar"
-		_info_text.text = "Os pontos \"?\" são sinais perto de onde você está. Escolha um para viajar."
+		_info_title.text = "Solar radar"
+		_info_text.text = "The \"?\" points are signals near you. Pick one to travel there."
 
 
 func _on_marker_info(id: StringName, revealed: bool) -> void:
 	if revealed:
 		var d := ContentDB.get_explorer(id)
 		_info_title.text = d.display_name
-		_info_text.text = d.subtitle + "\nJá registrado no diário."
+		_info_text.text = d.subtitle + "\nAlready recorded in the log."
 	else:
-		_info_title.text = "Área desconhecida"
-		_info_text.text = "Um sinal fraco... algo feito por humanos está por ali."
+		_info_title.text = "Unknown area"
+		_info_text.text = "A faint signal... something made by humans is out there."
 
 
 func _on_marker_chosen(id: StringName) -> void:
-	if not await _confirm.ask("Viajar até aqui?", "Viajar", "Ficar"):
+	if not await _confirm.ask("Travel here?", "Travel", "Stay"):
 		return
 	GameState.set_current_explorer(id)            # grava o checkpoint
 	SceneRouter.go_to(&"encounter", &"warp")      # viaja e continua na nave

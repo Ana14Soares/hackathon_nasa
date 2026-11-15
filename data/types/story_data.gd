@@ -4,6 +4,7 @@ extends RefCounted
 
 var arrival: Array[DialogueLine] = []
 var scan: Array[DialogueLine] = []
+var reaction: Array[DialogueLine] = []     # Lyra reage logo depois do scan
 var wrap_up: Array[DialogueLine] = []
 var reward_lines: Array[DialogueLine] = []
 
@@ -19,6 +20,7 @@ static func from_dict(d: Dictionary) -> StoryData:
 	var s := StoryData.new()
 	s.arrival = DialogueLine.list_from(d.get("arrival", []))
 	s.scan = DialogueLine.list_from(d.get("scan", []))
+	s.reaction = DialogueLine.list_from(d.get("reaction", []))
 	s.wrap_up = DialogueLine.list_from(d.get("wrap_up", []))
 	s.reward_lines = DialogueLine.list_from(d.get("reward_lines", []))
 
@@ -43,11 +45,14 @@ static func from_dict(d: Dictionary) -> StoryData:
 	return s
 
 
-## Fontes citadas pelos fatos, na ordem em que aparecem.
+## Fontes do equipamento (citadas pelo relatório/fatos; se não houver, todas as do JSON).
 func cited_source_ids() -> Array[String]:
 	var out: Array[String] = []
 	for f in report + facts:
 		var sid := str(f.get("source", ""))
 		if sid != "" and not out.has(sid):
 			out.append(sid)
+	if out.is_empty():
+		for k in sources:
+			out.append(str(k))
 	return out

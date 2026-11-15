@@ -23,9 +23,9 @@ grow_horizontal = 0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_type_variation = &"GhostButton"
-text = "Pausa"
+text = "Pause"
 icon = ExtResource("3_icon")
-tooltip_text = "Pausar o jogo (P)"
+tooltip_text = "Pause the game (P)"
 
 [node name="Panel" type="Control" parent="."]
 unique_name_in_owner = true
@@ -66,18 +66,23 @@ theme_override_constants/separation = 16
 [node name="Title" type="Label" parent="Panel/Center/Box/VBox"]
 layout_mode = 2
 theme_type_variation = &"HeadingLabel"
-text = "Jogo pausado"
+text = "Game paused"
 
 [node name="ResumeButton" type="Button" parent="Panel/Center/Box/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Continuar jogando"
+text = "Resume game"
 
 [node name="Settings" type="VBoxContainer" parent="Panel/Center/Box/VBox"]
 layout_mode = 2
 script = ExtResource("2_settings")
 
+[node name="RestartButton" type="Button" parent="Panel/Center/Box/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart game (debug)"
+
 [node name="MainMenuButton" type="Button" parent="Panel/Center/Box/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Voltar ao menu inicial"
+text = "Back to main menu"

@@ -1,8 +1,8 @@
 class_name ImageRef
 extends Resource
-## Imagem citada pelo JSON de história ("image": "craft").
+## Imagem real do equipamento, com legenda e crédito (usada nos créditos do jogo).
 
-@export var key: StringName      # o JSON cita assim: "image": "craft"
+@export var key: StringName      # nome de referência, ex.: "craft"
 @export var texture: Texture2D
 @export var caption: String
 @export var credit: String       # copiar do arquivo original, ex.: "NASA/JPL-Caltech"

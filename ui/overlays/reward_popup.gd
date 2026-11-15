@@ -1,6 +1,6 @@
 class_name RewardPopup
 extends Overlay
-## "ITEM RECEBIDO": mostra o artefato antes de ele ir para a estante.
+## "ITEM RECEIVED": mostra o artefato antes de ele ir para a estante.
 
 @onready var _tex: TextureRect = %RewardTexture
 @onready var _name: Label = %RewardName

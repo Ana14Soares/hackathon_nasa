@@ -1,7 +1,6 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://ui/dialogue_box/dialogue_box.gd" id="1_dlg"]
-[ext_resource type="Script" path="res://ui/cute_face/cute_face.gd" id="2_face"]
 
 [node name="DialogueBox" type="Control"]
 layout_mode = 3
@@ -33,28 +32,6 @@ theme_type_variation = &"Balloon"
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 24
-
-[node name="PortraitFrame" type="PanelContainer" parent="Balloon/HBox"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"PortraitFrame"
-
-[node name="Portrait" type="TextureRect" parent="Balloon/HBox/PortraitFrame"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-mouse_filter = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="PortraitFace" type="Control" parent="Balloon/HBox/PortraitFrame/Portrait"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-mouse_filter = 2
-script = ExtResource("2_face")
 
 [node name="Body" type="VBoxContainer" parent="Balloon/HBox"]
 layout_mode = 2
@@ -90,6 +67,6 @@ autowrap_mode = 3
 unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"SmallLabel"
-text = "Clique, Enter ou Espaço para continuar ▸"
+text = "Click, Enter or Space to continue ▸"
 horizontal_alignment = 2
 autowrap_mode = 3

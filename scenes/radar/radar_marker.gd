@@ -31,7 +31,7 @@ func setup(data: ExplorerData, status: int) -> void:
 		focus_mode = Control.FOCUS_NONE
 	else:
 		text = "?"
-		tooltip_text = "Área desconhecida"
+		tooltip_text = "Unknown area"
 		mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		pressed.connect(func() -> void: chosen.emit(explorer_id))
 		if not Settings.reduce_motion:
