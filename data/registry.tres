@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://cy26hde0oo6nw" path="res://data/explorers/eagle/eagle.tres" id="5_eagle"]
 [ext_resource type="Resource" uid="uid://cl8ddtjjdyda4" path="res://data/explorers/spirit/spirit.tres" id="6_spirit"]
 [ext_resource type="Resource" uid="uid://d3v6i2h3chqkn" path="res://data/explorers/near_shoemaker/near_shoemaker.tres" id="7_near_shoemaker"]
-[ext_resource type="Resource" path="res://data/explorers/sojourner/sojourner.tres" id="8_sojourner"]
+[ext_resource type="Resource" uid="uid://jwa67lhbbe67" path="res://data/explorers/sojourner/sojourner.tres" id="8_sojourner"]
 [ext_resource type="Resource" uid="uid://cr1b5aoadxp4n" path="res://data/explorers/insight/insight.tres" id="9_insight"]
 
 [resource]

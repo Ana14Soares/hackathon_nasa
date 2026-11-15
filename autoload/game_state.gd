@@ -4,7 +4,7 @@ extends Node
 enum Status { NOT_VISITED, ARRIVED, SCANNED, COMPLETED }
 
 ## Botão "Reiniciar (debug)" no menu e na pausa. Mude para false na versão final.
-const DEBUG_RESTART := true
+const DEBUG_RESTART := false
 
 signal status_changed(id: StringName, status: Status)
 signal flag_changed(flag: StringName, value: bool)

@@ -37,23 +37,14 @@ func get_explorer(id: StringName) -> ExplorerData:
 	return _by_id.get(id)
 
 
-## Os N pontos pendentes mais próximos de onde a protagonista está agora.
-func available_ids() -> Array[StringName]:
-	var out: Array[StringName] = []
-	var here := get_explorer(GameState.current_explorer)
-	var origin := here.radar_position if here else Vector2.ZERO
-	var pending: Array[ExplorerData] = []
-	for e in REGISTRY.explorers:
-		if GameState.get_status(e.id) != GameState.Status.COMPLETED and _gates_ok(e):
-			pending.append(e)
-	pending.sort_custom(func(a: ExplorerData, b: ExplorerData) -> bool:
-		return a.radar_position.distance_to(origin) < b.radar_position.distance_to(origin))
-	for i in mini(REGISTRY.unlock_count, pending.size()):
-		out.append(pending[i].id)
-	return out
+## Quantos pontos "?" o radar mostra por vez (ExplorerRegistry.unlock_count).
+var unlock_count: int:
+	get:
+		return REGISTRY.unlock_count
 
 
-func _gates_ok(e: ExplorerData) -> bool:      # unlock_after é uma trava opcional
+## unlock_after é uma trava opcional: só libera depois de concluir os ids listados.
+func gates_ok(e: ExplorerData) -> bool:
 	for dep in e.unlock_after:
 		if GameState.get_status(dep) != GameState.Status.COMPLETED:
 			return false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d6nw0sxary7v"
-path="res://.godot/imported/lyra_portrait.svg-ef83a72b1b568ddc56c51d9eec8147ec.ctex"
+uid="uid://cqlerrp8e0pkw"
+path="res://.godot/imported/obj2.svg-b3338fc5344b0ad9b7f45f92ea02e72b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/lyra_portrait.svg"
-dest_files=["res://.godot/imported/lyra_portrait.svg-ef83a72b1b568ddc56c51d9eec8147ec.ctex"]
+source_file="res://data/explorers/surveyor_3/img/obj2.svg"
+dest_files=["res://.godot/imported/obj2.svg-b3338fc5344b0ad9b7f45f92ea02e72b.ctex"]
 
 [params]
 

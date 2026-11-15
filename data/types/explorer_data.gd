@@ -40,8 +40,12 @@ extends Resource
 @export var diary_page: Texture2D
 
 @export_group("Radar")
-@export var radar_position := Vector2.ZERO  # em unidades do radar (borda = 450)
-@export var radar_icon: Texture2D           # ícone revelado depois de visitado
+## Arte do ponto no radar ANTES de descobrir. Vazio = balão branco com "?".
+@export var radar_icon_unknown: Texture2D
+## Arte do ponto no radar DEPOIS de visitado. Vazio = o sprite do equipamento num círculo.
+## (A posição do ponto não fica aqui: arraste o nó dele na cena do radar.)
+@export var radar_position := Vector2.ZERO
+@export var radar_icon: Texture2D           # arte do ponto depois de visitado (descoberto)
 @export var unlock_after: Array[StringName] = []  # trava opcional; vazio = só proximidade
 
 @export_group("Conteúdo")

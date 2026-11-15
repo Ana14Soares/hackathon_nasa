@@ -94,6 +94,11 @@ func set_item_locked(item_id: StringName, locked: bool) -> void:
 		(_items[item_id] as Interactable).set_locked(locked)
 
 
+func set_item_visible(item_id: StringName, v: bool) -> void:
+	if _items.has(item_id):
+		(_items[item_id] as Control).visible = v
+
+
 func set_items_visible(v: bool) -> void:
 	for id in _items:
 		(_items[id] as Control).visible = v

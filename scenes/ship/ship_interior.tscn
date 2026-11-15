@@ -6,14 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://busytghxysopy" path="res://scenes/ship/ship.svg" id="4_cfptk"]
 [ext_resource type="PackedScene" path="res://ui/interactable/interactable.tscn" id="4_inter"]
 [ext_resource type="Texture2D" uid="uid://d06lm05tftdx3" path="res://assets/ui/icon_cracha.svg" id="6_cfptk"]
+[ext_resource type="Texture2D" uid="uid://bej838jpgouc0" path="res://assets/ui/radar_design_pressed.svg" id="9_f0kti"]
+[ext_resource type="Texture2D" uid="uid://ctwfsakp63gyk" path="res://assets/ui/radar_design_default.svg" id="9_rdefd"]
 [ext_resource type="Texture2D" uid="uid://b4rq8n70rojqn" path="res://assets/ui/scanner_default.svg" id="9_gd33v"]
 [ext_resource type="Texture2D" uid="uid://dg18px6k2wwji" path="res://assets/ui/scanner_pressed.svg" id="10_tehdu"]
-[ext_resource type="Texture2D" uid="uid://xi0sii1sawrp" path="res://assets/ui/radar_default.svg" id="12_rdef"]
-[ext_resource type="Texture2D" uid="uid://b2f145mi1f20r" path="res://assets/ui/radar_pressed.svg" id="13_rpress"]
 [ext_resource type="Texture2D" uid="uid://d4f2watoiukx7" path="res://assets/ui/radar_null.svg" id="14_rnull"]
-[ext_resource type="Texture2D" path="res://assets/ui/scanner_animation1.svg" id="15_sa"]
-[ext_resource type="Script" path="res://ui/scanner_anim/scanner_animation.gd" id="16_sas"]
-[ext_resource type="Texture2D" path="res://assets/ui/scanner_animation2.svg" id="17_sb"]
+[ext_resource type="Texture2D" uid="uid://1ixkk8hbp0b0" path="res://assets/ui/scanner_animation1.svg" id="15_sa"]
+[ext_resource type="Script" uid="uid://cs6urx8vxt3xa" path="res://ui/scanner_anim/scanner_animation.gd" id="16_sas"]
+[ext_resource type="Texture2D" uid="uid://km52rov265sg" path="res://assets/ui/scanner_animation2.svg" id="17_sb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cfptk"]
 texture = ExtResource("3_gd33v")
@@ -25,10 +25,10 @@ load_path = "res://.godot/imported/icon_diary_pressed.svg-a0a04bd3d73ede0b56c216
 texture = SubResource("CompressedTexture2D_gd33v")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rdef"]
-texture = ExtResource("12_rdef")
+texture = ExtResource("9_rdefd")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rpress"]
-texture = ExtResource("13_rpress")
+texture = ExtResource("9_f0kti")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rnull"]
 texture = ExtResource("14_rnull")
@@ -98,7 +98,7 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ScannerAnim" type="TextureRect" parent="Window"]
+[node name="ScannerAnim" type="TextureRect" parent="Window" unique_id=421608440]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -125,7 +125,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("4_cfptk")
 
-[node name="DiaryObject" parent="." unique_id=1299984029 instance=ExtResource("4_inter")]
+[node name="DiaryObject" parent="." unique_id=1299984029 instance=ExtResource("4_inter") groups=["no_click_sound"]]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7

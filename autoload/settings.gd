@@ -168,12 +168,15 @@ func _build_theme() -> Theme:
 	_button_var(t, &"InteractablePulse", Color("fff4b8"), C_TEXT_DARK, Color("ffd23f"), 6)
 	_button_var(t, &"GhostButton", Color(0.1, 0.1, 0.16, 0.85), C_TEXT, C_ACCENT)
 	_button_var(t, &"ItemCard", Color("efe9da"), C_TEXT_DARK, Color("c9b98f"))
-	_button_var(t, &"RadarMarker", Color(0.1, 0.35, 0.25, 0.95), Color("d6ffe9"), Color("6effb5"), 3, 999)
+	_button_var(t, &"RadarMarker", Color("ffffff"), Color("e0359b"), Color("e0359b"), 3, 999)
+	t.set_font_size(&"font_size", &"RadarMarker", fs(32))
 	t.set_stylebox(&"pressed", &"ItemCard", _box(C_ACCENT_DARK, C_ACCENT, 4, 14, 12))
 	t.set_color(&"font_pressed_color", &"ItemCard", Color.WHITE)
 	t.set_color(&"font_hover_pressed_color", &"ItemCard", Color.WHITE)
 	t.set_constant(&"icon_max_width", &"ItemCard", fs(110))
-	t.set_constant(&"icon_max_width", &"RadarMarker", fs(48))
+	t.set_constant(&"icon_max_width", &"RadarMarker", fs(58))
+	for c in [&"icon_disabled_color", &"icon_normal_color", &"icon_hover_color", &"icon_pressed_color"]:
+		t.set_color(c, &"RadarMarker", Color.WHITE)   # equipamento visitado aparece sem opacidade
 	_icon_only_styles(t)
 	_menu_styles(t)
 	_diary_styles(t)

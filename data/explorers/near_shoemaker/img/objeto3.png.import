@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xi0sii1sawrp"
-path="res://.godot/imported/radar_default.svg-9a5c6ed5d2c55f863853fb6349a79c1b.ctex"
+uid="uid://bd5amqd4vnwr3"
+path="res://.godot/imported/objeto3.png-c14d047a8348ea392595144e126fee80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/radar_default.svg"
-dest_files=["res://.godot/imported/radar_default.svg-9a5c6ed5d2c55f863853fb6349a79c1b.ctex"]
+source_file="res://data/explorers/near_shoemaker/img/objeto3.png"
+dest_files=["res://.godot/imported/objeto3.png-c14d047a8348ea392595144e126fee80.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

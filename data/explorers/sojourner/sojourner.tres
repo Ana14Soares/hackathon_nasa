@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://buaewdso8p7hl" path="res://data/types/image_ref.gd" id="2_ir"]
 [ext_resource type="Texture2D" uid="uid://bccn734fdv6eq" path="res://data/explorers/sojourner/img/sojourner.svg" id="3_sp"]
 [ext_resource type="Texture2D" uid="uid://dxjwvr608n0rh" path="res://assets/backdrops/mars_sojourner.svg" id="4_bd"]
+[ext_resource type="Texture2D" uid="uid://rp635io3rklj" path="res://data/explorers/sojourner/img/obj6.svg" id="5_cdtgp"]
+[ext_resource type="Texture2D" uid="uid://cuyp8b57hj6xx" path="res://data/explorers/sojourner/img/objeto6.svg" id="6_ed8t2"]
 
 [sub_resource type="Resource" id="Resource_craft"]
 script = ExtResource("2_ir")
@@ -34,5 +36,7 @@ view_position = Vector2(950, 400)
 view_scale = 0.9
 show_starfield = false
 diary_page = ExtResource("1_yahs8")
+radar_icon_unknown = ExtResource("6_ed8t2")
 radar_position = Vector2(-205, -70)
+radar_icon = ExtResource("5_cdtgp")
 images = Array[ExtResource("2_ir")]([SubResource("Resource_craft"), SubResource("Resource_place")])

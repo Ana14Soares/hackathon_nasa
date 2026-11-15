@@ -25,7 +25,7 @@ extends Control
 
 func _ready() -> void:
 	get_tree().paused = false
-	AudioManager.play_music(&"menu")
+	AudioManager.play_music(&"bg")
 
 	var saved := SaveManager.has_save()
 	_setup_start_button(saved)

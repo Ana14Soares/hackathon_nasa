@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2i8vxlccge18"
-path="res://.godot/imported/lyra_saucer.svg-db14eaabe0103bd63fd2a8042ed933b0.ctex"
+uid="uid://uwrww36poq1n"
+path="res://.godot/imported/obj5.svg-ecc15c2f37a3e6a8a9663ccb33928bed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/lyra_saucer.svg"
-dest_files=["res://.godot/imported/lyra_saucer.svg-db14eaabe0103bd63fd2a8042ed933b0.ctex"]
+source_file="res://scenes/radar/obj5.svg"
+dest_files=["res://.godot/imported/obj5.svg-ecc15c2f37a3e6a8a9663ccb33928bed.ctex"]
 
 [params]
 

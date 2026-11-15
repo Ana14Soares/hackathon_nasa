@@ -51,6 +51,11 @@ func _ready() -> void:
 	set_process(false)
 
 
+func _exit_tree() -> void:
+	if _typing:
+		AudioManager.stop_typing()   # a cena trocou no meio da digitação
+
+
 func is_playing() -> bool:
 	return _playing
 
@@ -71,6 +76,7 @@ func play(lines: Array[DialogueLine]) -> void:
 		_show_line(line)
 		line_started.emit(line)
 		await line_dismissed
+	AudioManager.stop_typing()
 	_set_talking(false)
 	_balloon.visible = false
 	set_process(false)
@@ -110,12 +116,14 @@ func _show_line(line: DialogueLine) -> void:
 	var duration := maxf(0.05, chars / maxf(Settings.text_speed, 1.0))
 	_typing = true
 	_set_talking(true)
+	AudioManager.start_typing(&"robot_talk" if speaker else &"dialog_typing")   # equipamento = voz de robô
 	if _tween:
 		_tween.kill()
 	_tween = create_tween()
 	_tween.tween_property(_text, "visible_ratio", 1.0, duration)
 	_tween.finished.connect(func() -> void:
 		_typing = false
+		AudioManager.stop_typing()
 		_set_talking(false))
 	_fit_height()
 
@@ -147,6 +155,7 @@ func _advance() -> void:
 			_tween.kill()
 		_text.visible_ratio = 1.0
 		_typing = false
+		AudioManager.stop_typing()
 		_set_talking(false)
 		_shown_at = Time.get_ticks_msec()
 	else:
