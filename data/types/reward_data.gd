@@ -8,3 +8,5 @@ extends Resource
 @export var texture: Texture2D           # vira item decorativo na nave
 @export var shelf_slot: StringName       # nome do slot em ShipInterior
 @export var unlocks: Array[StringName] = []   # [&"radar_unlocked"]
+## Arte completa do popup "NEW ITEM" deste artefato (com o texto desenhado). Vazio = a arte padrão do popup.
+@export var popup_art: Texture2D

@@ -24,7 +24,9 @@ func _ready() -> void:
 	# Abas = botões invisíveis da cena (Tab1…TabN), na ordem do registro. Arraste-os no editor.
 	var tabs := _tabs.get_children()
 	for i in tabs.size():
-		(tabs[i] as Button).pressed.connect(_on_tab_pressed.bind(i))
+		var tab := tabs[i] as Button
+		tab.add_to_group(AudioManager.NO_CLICK_GROUP)   # a aba toca o som de página, não o clique
+		tab.pressed.connect(_on_tab_pressed.bind(i))
 	Settings.changed.connect(_on_settings_changed)
 
 
@@ -32,7 +34,7 @@ func _ready() -> void:
 func open(data: ExplorerData, _story: StoryData = null) -> void:
 	_selected = data.id
 	_refresh()
-	AudioManager.play_sfx(&"diary_open")
+	AudioManager.play_sfx(&"diary_page", &"UI")
 	show_overlay()
 
 
@@ -46,7 +48,7 @@ func open_collection() -> void:
 	else:
 		_selected = &""
 	_refresh()
-	AudioManager.play_sfx(&"diary_open")
+	AudioManager.play_sfx(&"diary_page", &"UI")
 	show_overlay()
 
 
@@ -79,6 +81,7 @@ func _on_tab_pressed(index: int) -> void:
 	if index >= all.size() or not GameState.is_collected(all[index]) or all[index] == _selected:
 		return
 	_selected = all[index]
+	AudioManager.play_sfx(&"diary_page", &"UI")
 	_build_tabs()
 	_show_page(ContentDB.get_explorer(_selected))
 

@@ -5,8 +5,10 @@
 [ext_resource type="Script" uid="uid://buaewdso8p7hl" path="res://data/types/image_ref.gd" id="2_ir"]
 [ext_resource type="Texture2D" uid="uid://m11w6n5yk2l6" path="res://data/explorers/pioneer_10/img/pioneer_10.svg" id="3_sp"]
 [ext_resource type="Texture2D" uid="uid://c416c4q3o2m18" path="res://assets/backdrops/deep_space.svg" id="4_bd"]
+[ext_resource type="Texture2D" uid="uid://uwrww36poq1n" path="res://scenes/radar/obj5.svg" id="5_wgg84"]
 [ext_resource type="Script" uid="uid://b1f2a6xeay2xm" path="res://data/types/reward_data.gd" id="6_rw"]
 [ext_resource type="Texture2D" uid="uid://bojxkyw4u84fc" path="res://data/explorers/pioneer_10/img/placa_default.svg" id="6_umepn"]
+[ext_resource type="Texture2D" uid="uid://5v5pqspdt3ps" path="res://scenes/radar/objeto5.svg" id="6_wuxse"]
 [ext_resource type="Texture2D" uid="uid://bl4a2kxqppmqq" path="res://data/explorers/pioneer_10/img/Pioneer 10.svg" id="8_umepn"]
 [ext_resource type="Texture2D" uid="uid://b3dngass8f8yb" path="res://data/explorers/pioneer_10/img/Cenário-voando.svg" id="9_i2g70"]
 
@@ -45,6 +47,8 @@ sprite = ExtResource("8_umepn")
 view_position = Vector2(1000, 410)
 view_scale = 0.4
 diary_page = ExtResource("1_i2g70")
+radar_icon_unknown = ExtResource("6_wuxse")
 radar_position = Vector2(337, -283)
+radar_icon = ExtResource("5_wgg84")
 images = Array[ExtResource("2_ir")]([SubResource("Resource_craft"), SubResource("Resource_place")])
 reward = SubResource("Resource_reward")

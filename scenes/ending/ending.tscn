@@ -62,7 +62,7 @@ theme_override_constants/separation = 16
 [node name="Title" type="Label" parent="UiLayer/Credits/Panel/VBox"]
 layout_mode = 2
 theme_type_variation = &"HeadingLabel"
-text = "The End"
+text = "Credits"
 
 [node name="Scroll" type="ScrollContainer" parent="UiLayer/Credits/Panel/VBox"]
 layout_mode = 2

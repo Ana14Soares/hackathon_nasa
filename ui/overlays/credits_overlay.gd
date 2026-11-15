@@ -18,16 +18,33 @@ func open() -> void:
 
 
 static func build_bbcode() -> String:
-	var bb := "[b]Remembered explorers[/b]\n\n"
-	for id in ContentDB.all_ids():
-		var d := ContentDB.get_explorer(id)
-		var story := ContentDB.get_story(id)
-		bb += "[b]%s[/b] — %s\n" % [d.display_name, d.subtitle]
-		for img in d.images:
-			bb += "   Image \"%s\": %s\n" % [img.caption, img.credit]
-		for sid in story.cited_source_ids():
-			var s: Dictionary = story.sources.get(sid, {})
-			bb += "   Source: %s\n" % str(s.get("title", sid))
-		bb += "\n"
-	bb += "[i]Thank you for remembering them.[/i]"
-	return bb
+	return "\n".join([
+		"[i]A story inspired by real space missions. Lyra and the memory scanner are fictional. The spacecraft’s lines were written to tell their stories; they are not messages the machines actually sent. Scientific information: NASA, JPL, and the other sources listed in the log.[/i]",
+		"",
+		"[b]Remembered explorers[/b]",
+		"",
+		"[b]Pioneer 10[/b] – Interplanetary probe · 1972",
+		"   Source: NASA Science – Pioneer 10",
+		"",
+		"[b]Sojourner[/b] – Mars rover · 1997",
+		"   Source: NASA Science – Mars Pathfinder / Sojourner",
+		"",
+		"[b]InSight[/b] – Mars lander · 2018",
+		"   Source: NASA Science – InSight",
+		"",
+		"[b]Spirit[/b] – Mars rover · 2004",
+		"   Source: NASA Science – Spirit (MER-A)",
+		"",
+		"[b]Eagle[/b] – Apollo 11 lunar module · 1969",
+		"   Source: NASA – Apollo 11",
+		"",
+		"[b]NEAR Shoemaker[/b] – Asteroid probe · 1996",
+		"   Source: NASA Science – NEAR Shoemaker",
+		"",
+		"[b]Surveyor 3[/b] – Lunar lander · 1967",
+		"   Sources: NASA Science – Surveyor 3, NASA – Apollo 12",
+		"",
+		"[b]Created by:[/b] Amanda Coelho, Ana Soares, Giovanna Castro, Letícia Marreiro and Virna Carvalho",
+		"",
+		"[i]Thank you for remembering them. Thank you for exploring with us.[/i]",
+	])

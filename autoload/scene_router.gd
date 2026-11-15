@@ -1,5 +1,5 @@
 extends CanvasLayer
-## Único lugar que chama change_scene_to_file. Efeitos: fade, radar, warp.
+## Único lugar que chama change_scene_to_file. Efeitos: fade e warp.
 ## Com "reduzir movimento" ligado, todos viram fade simples.
 
 signal transition_finished
@@ -12,7 +12,7 @@ const SCENES := {
 	&"ending": "res://scenes/ending/ending.tscn",
 }
 ## Duração de cada metade (saída e entrada), em segundos.
-const HALF := {&"fade": 0.3, &"radar": 0.5, &"warp": 1.0}
+const HALF := {&"fade": 0.3, &"warp": 1.0}
 
 @onready var _fx: TransitionFx = $Fx
 @onready var _blocker: ColorRect = $Blocker
@@ -42,10 +42,14 @@ func go_to(scene_key: StringName, effect: StringName = &"fade", params: Dictiona
 	_fx.mode = effect
 	_fx.visible = effect != &"fade"
 	_blocker.visible = true
+	var tint := Color(0.09, 0.0, 0.16, 0.0) if effect == &"warp" else Color(0.02, 0.02, 0.05, 0.0)
+	_blocker.color = tint                               # fundo roxo escuro no warp
 	_skippable = effect == &"warp"
 	_started_at = Time.get_ticks_msec()
 	if effect == &"warp":
-		AudioManager.play_sfx(&"warp")
+		AudioManager.start_loop_sfx(&"ship_flying")      # nave em movimento durante toda a viagem
+	else:
+		AudioManager.play_sfx(&"transition")             # fade (inclui o warp reduzido por reduce_motion)
 	var half: float = HALF[effect]
 
 	await _animate(0.0, 1.0, half)
@@ -53,6 +57,7 @@ func go_to(scene_key: StringName, effect: StringName = &"fade", params: Dictiona
 	await get_tree().process_frame
 	await get_tree().process_frame
 	await _animate(1.0, 0.0, half)
+	AudioManager.stop_loop_sfx(&"ship_flying", 0.4)
 
 	_fx.visible = false
 	_blocker.visible = false

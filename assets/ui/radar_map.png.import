@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2f145mi1f20r"
-path="res://.godot/imported/radar_pressed.svg-04f551837fa028130babd293151bd684.ctex"
+uid="uid://dnvoqu5bkfgl2"
+path="res://.godot/imported/radar_map.png-244d4e35df30d38f125b18cf28968a1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/radar_pressed.svg"
-dest_files=["res://.godot/imported/radar_pressed.svg-04f551837fa028130babd293151bd684.ctex"]
+source_file="res://assets/ui/radar_map.png"
+dest_files=["res://.godot/imported/radar_map.png-244d4e35df30d38f125b18cf28968a1d.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

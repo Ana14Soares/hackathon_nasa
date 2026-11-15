@@ -1,12 +1,10 @@
 [gd_resource type="Resource" script_class="ProtagonistCard" format=3 uid="uid://bo7ad46cw7r0h"]
 
 [ext_resource type="Script" uid="uid://b80auaxxgotm3" path="res://data/types/protagonist_card.gd" id="1_pc"]
-[ext_resource type="Texture2D" uid="uid://d6nw0sxary7v" path="res://assets/art/lyra_portrait.svg" id="2_pt"]
 
 [resource]
 script = ExtResource("1_pc")
 display_name = "Lyra"
 origin = "Lyra constellation, near the star Vega"
 ship_name = "Vagalume"
-portrait = ExtResource("2_pt")
 note = "Curious traveler. Collects the stories of forgotten explorers and leaves none behind."

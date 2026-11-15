@@ -13,7 +13,7 @@ var _lines: Array[DialogueLine] = []
 
 
 func _ready() -> void:
-	AudioManager.play_music(&"intro")
+	AudioManager.play_music(&"bg")
 	var first := ContentDB.get_explorer(ContentDB.first_explorer)
 	_speck.texture = first.sprite if first else null
 	_speck.modulate.a = 0.0

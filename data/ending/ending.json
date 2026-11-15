@@ -1,72 +1,72 @@
 {
-  "backdrop": "res://assets/art/earth.svg",
+  "backdrop": "res://assets/art/cenario-final.svg",
   "transition": [
-    {
-      "who": "hero",
-      "emo": "warm",
-      "text": "That's everyone we found, all in my log."
-    },
-    {
-      "who": "hero",
-      "emo": "warm",
-      "text": "Now I want to see Earth."
-    }
+	{
+	  "who": "hero",
+	  "emo": "warm",
+	  "text": "That's everyone we found, all in my log."
+	},
+	{
+	  "who": "hero",
+	  "emo": "warm",
+	  "text": "Now I want to see Earth."
+	}
   ],
   "lines": [
-    {
-      "who": "hero",
-      "emo": "warm",
-      "text": "When I found Pioneer, I just wanted to know where it came from."
-    },
-    {
-      "who": "hero",
-      "emo": "warm",
-      "text": "Now, looking at Earth, I keep thinking about the people who built each of them."
-    },
-    {
-      "who": "hero",
-      "emo": "warm",
-      "text": "Someone tested those wheels. Put a camera together. Chose the drawings for a plaque."
-    },
-    {
-      "who": "hero",
-      "emo": "warm",
-      "text": "Then they watched from far away, waiting for news."
-    },
-    {
-      "who": "hero",
-      "emo": "warm",
-      "text": "Some went first to find out whether others could follow. Some showed places no one had ever seen. Others helped people get home."
-    },
-    {
-      "who": "hero",
-      "emo": "warm",
-      "text": "That's how humans learned to travel farther, one discovery at a time."
-    },
-    {
-      "who": "hero",
-      "emo": "warm",
-      "text": "I wish I could have seen them all working. But I'm glad I found what stayed behind and learned why it was there."
-    },
-    {
-      "who": "hero_to_player",
-      "emo": "warm",
-      "text": "I've kept their stories in my log. Now you know them too."
-    },
-    {
-      "who": "hero_to_player",
-      "emo": "warm",
-      "text": "When you look at the Moon or hear about Mars, maybe you'll remember someone we found."
-    },
-    {
-      "who": "hero_to_player",
-      "emo": "warm",
-      "text": "And if you can, tell someone else."
-    },
-    {
-      "who": "hero_to_player",
-      "emo": "warm",
-      "text": "Now it's your turn to help keep these stories alive."
-    }
+	{
+	  "who": "hero",
+	  "emo": "warm",
+	  "text": "When I found Pioneer, I just wanted to know where it came from."
+	},
+	{
+	  "who": "hero",
+	  "emo": "warm",
+	  "text": "Now, looking at Earth, I keep thinking about the people who built each of them."
+	},
+	{
+	  "who": "hero",
+	  "emo": "warm",
+	  "text": "Someone tested those wheels. Put a camera together. Chose the drawings for a plaque."
+	},
+	{
+	  "who": "hero",
+	  "emo": "warm",
+	  "text": "Then they watched from far away, waiting for news."
+	},
+	{
+	  "who": "hero",
+	  "emo": "warm",
+	  "text": "Some went first to find out whether others could follow. Some showed places no one had ever seen. Others helped people get home."
+	},
+	{
+	  "who": "hero",
+	  "emo": "warm",
+	  "text": "That's how humans learned to travel farther, one discovery at a time."
+	},
+	{
+	  "who": "hero",
+	  "emo": "warm",
+	  "text": "I wish I could have seen them all working. But I'm glad I found what stayed behind and learned why it was there."
+	},
+	{
+	  "who": "hero_to_player",
+	  "emo": "warm",
+	  "text": "I've kept their stories in my log. Now you know them too."
+	},
+	{
+	  "who": "hero_to_player",
+	  "emo": "warm",
+	  "text": "When you look at the Moon or hear about Mars, maybe you'll remember someone we found."
+	},
+	{
+	  "who": "hero_to_player",
+	  "emo": "warm",
+	  "text": "And if you can, tell someone else."
+	},
+	{
+	  "who": "hero_to_player",
+	  "emo": "warm",
+	  "text": "Now it's your turn to help keep these stories alive."
+	}
   ]
 }

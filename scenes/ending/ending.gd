@@ -19,6 +19,7 @@ func _ready() -> void:
 	if ResourceLoader.exists(backdrop_path):
 		ship.show_custom_window(load(backdrop_path))
 	ship.set_items_visible(false)
+	ship.set_item_visible(&"radar", true)   # só decorativo: os itens ficam desabilitados
 	for r in GameState.artifacts:
 		ship.place_artifact(ContentDB.get_reward(r))
 	menu_btn.pressed.connect(func() -> void: SceneRouter.go_to(&"menu"))

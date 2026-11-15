@@ -5,7 +5,9 @@
 [ext_resource type="Script" uid="uid://buaewdso8p7hl" path="res://data/types/image_ref.gd" id="2_ir"]
 [ext_resource type="Texture2D" uid="uid://dgvo6ureyklpn" path="res://data/explorers/spirit/img/spirit.svg" id="3_sp"]
 [ext_resource type="Texture2D" uid="uid://ynlvl7khjyip" path="res://assets/backdrops/mars.svg" id="4_bd"]
+[ext_resource type="Texture2D" uid="uid://ske7emp3ibp2" path="res://data/explorers/spirit/img/obj4.svg" id="5_olsax"]
 [ext_resource type="Texture2D" uid="uid://vw3ry8od5pr4" path="res://data/explorers/spirit/img/Cenário-Marte-spirit.svg" id="5_tt3ad"]
+[ext_resource type="Texture2D" uid="uid://d3b3amdl6t8ek" path="res://data/explorers/spirit/img/objeto4.svg" id="6_ie6ga"]
 
 [sub_resource type="Resource" id="Resource_craft"]
 script = ExtResource("2_ir")
@@ -34,5 +36,7 @@ sprite = ExtResource("3_sp")
 view_position = Vector2(990, 370)
 view_scale = 0.9
 diary_page = ExtResource("1_55n5g")
+radar_icon_unknown = ExtResource("6_ie6ga")
 radar_position = Vector2(-150, -85)
+radar_icon = ExtResource("5_olsax")
 images = Array[ExtResource("2_ir")]([SubResource("Resource_craft"), SubResource("Resource_place")])

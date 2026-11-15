@@ -45,7 +45,7 @@ func _ready() -> void:
 	ship.item_activated.connect(_on_item_activated)
 	diary.closed.connect(_on_diary_closed)
 	dialogue.talking_changed.connect(_on_talking_changed)
-	AudioManager.play_music(&"encounter")
+	AudioManager.play_music(&"bg")
 	phase = Phase.ARRIVAL
 	_apply_rules()
 	if SceneRouter.is_busy():
@@ -104,7 +104,7 @@ func _on_item_activated(item: StringName) -> void:
 		&"id_card":
 			id_card.open()
 		&"radar":
-			SceneRouter.go_to(&"radar", &"radar")
+			SceneRouter.go_to(&"radar", &"fade")
 
 
 ## Enquanto o equipamento fala (depois da varredura), o scanner aparece no vidro e anima.
