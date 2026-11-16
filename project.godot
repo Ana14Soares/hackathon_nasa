@@ -10,13 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Exploradores Esquecidos"
+config/name="Back Space"
 config/description="Uma viajante curiosa. Objetos humanos à deriva. Histórias reais que merecem ser lembradas."
 run/main_scene="res://scenes/menu/main_menu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/bg_color=Color(0.1764706, 0.12156863, 0.22352941, 1)
 boot_splash/image="uid://cyac0k6a2s5f0"
-config/icon="res://icon.svg"
+config/icon="res://assets/ui/app_icon.png"
 boot_splash/minimum_display_time=1500
 
 [autoload]
@@ -58,3 +58,7 @@ common/drop_mouse_on_gui_input_disabled=true
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[audio]
+
+general/default_playback_type.web=0
